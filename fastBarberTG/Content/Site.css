@@ -1,0 +1,20 @@
+﻿* { 
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --purple: #AB009A;
+    --dark-purple: #4E0046;
+    --bg-gray: #2D2D2D;
+    --bg-graydark: #1D1D1D;
+    --input: #181818;
+    --white: #FFF;
+}
+
+body {
+    background: var(--bg-gray);
+    color: white;
+}

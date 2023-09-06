@@ -1,0 +1,84 @@
+﻿body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+body img{
+    width: 258px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px auto;
+}
+
+
+.inputs label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.inputs input {
+    color: white;
+    padding: 10px;
+    height: 2rem;
+    width: 25rem;
+    background: var(--input);
+    border: none;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+
+.inputs input:focus {
+    outline: none;
+    border: 1px solid var(--purple);
+    transition: 0.4s;
+}
+
+.forgot {
+    font-size: 12px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.forgot a {
+    text-decoration: none;
+    color: var(--white);
+    opacity: 0.5;
+    border-bottom: 1px solid transparent;
+}
+
+.forgot a:hover {
+    border-bottom: 1px solid white;
+    transition: 0.4s;
+}
+
+button[type="submit"] {
+    margin-top: 5rem;
+    height: 55px;
+    width: 284px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    background: var(--purple);
+    color: var(--white);
+}
+
+button[type="submit"]:hover {
+    background: var(--dark-purple);
+    cursor: pointer;
+    transition: 0.4s;
+}

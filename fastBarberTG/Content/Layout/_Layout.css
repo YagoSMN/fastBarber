@@ -1,0 +1,16 @@
+﻿header {
+    height: 5rem;
+    background: var(--bg-graydark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6rem;
+}
+
+header img {
+    height: 50px;
+}
+
+main {
+    margin: 2rem 10rem;
+}

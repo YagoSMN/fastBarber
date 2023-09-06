@@ -1,0 +1,31 @@
+﻿
+@{
+	<link href="~/Content/BarberControl/_BarberControlIndex.css" rel="stylesheet" type="text/css" />
+    ViewBag.Title = "Index";
+}
+
+<div class="marked-users">
+	<h1>Horários agendados</h1>
+    
+	<div class="flex-control">
+		<div class="DateTimeNow">
+			<h2>Segunda-Feira <span class="toPurple">04/09</span></h2>
+			<img src="~/Content/Logo/circlepng.png"/>
+			<h2>AM <span id="timeNow">08:00</span></h2> @*Aqui deve ir função para atualizar horário de hora em hora*@)
+		</div>
+		<button class="btn-filter"><span class="material-symbols-outlined">filter_alt</span>Filtrar</button>
+	</div>
+    
+	<div class="morning-costumers">
+		<h2>Manhã</h2>
+		<div class="costumer">
+			<div class="circle-status"></div>
+			<h2>Douglas Silva</h2> @*Aqui vai o nome do cliente*@
+			<img src="~/Content/Logo/circlepng.png"/>
+			<h2>AM <span class="toPurple">08:00</span></h2> @*Aqui vai o horário marcado pelo cliente*@
+			<img src="~/Content/Logo/circlepng.png"/>
+			<h2>20 Anos</h2> @*Aqui vai a idade do cliente, realizando o calculo pelo formulário informado*@
+		</div>
+
+	</div>
+</div>

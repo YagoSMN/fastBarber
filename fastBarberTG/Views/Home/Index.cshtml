@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+	<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+	<link href="~/Content/Home/_HomeIndex.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+}
+
+<body>
+	<img src="~/Content/Logo/LoginLogo.png"/>
+	
+	<form>
+		<div class="inputs">
+			<label for="username">username</label>
+			<input type="text" id="username" placeholder="user"/>
+		</div>
+
+		<div class="inputs">
+			<label for="userpassword">password</label>
+			<input type="password" id="userpassword" placeholder="* * * *"/>
+		</div>
+        
+		<div class="forgot">
+			<a href="#">esqueceu sua senha?</a>
+		</div>
+        
+		<button type="submit">ENTRAR</button>
+	</form>
+</body>

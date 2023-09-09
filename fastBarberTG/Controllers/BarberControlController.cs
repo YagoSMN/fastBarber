@@ -13,5 +13,10 @@ namespace fastBarberTG.Controllers
         {
             return View();
         }
+
+        public ActionResult CostumerDetails()
+        {
+            return View();
+        }
     }
 }

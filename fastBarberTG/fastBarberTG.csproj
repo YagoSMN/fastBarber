@@ -117,6 +117,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\BarberControl\_BarberControlCostumerDetails.css" />
     <Content Include="Content\BarberControl\_BarberControlIndex.css" />
     <Content Include="Content\Logo\circlepng.png" />
     <Content Include="Content\Logo\LoginLogo.png" />
@@ -124,6 +125,7 @@
     <Content Include="Content\Layout\UserStyle.css" />
     <Content Include="Content\Home\_HomeIndex.css" />
     <Content Include="Content\Layout\_Layout.css" />
+    <Content Include="Content\User\_UserSettings.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -137,9 +139,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BarberControlController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Costumer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +160,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\BarberControl\Index.cshtml" />
+    <Content Include="Views\BarberControl\CostumerDetails.cshtml" />
+    <Content Include="Views\User\Settings.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -165,7 +171,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

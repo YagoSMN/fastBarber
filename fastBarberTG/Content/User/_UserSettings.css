@@ -1,0 +1,33 @@
+﻿.user-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-graydark);
+    padding: 20px;
+    max-width: 25rem;
+    border-radius: 4px;
+}
+
+
+.user-settings button {
+    padding: 20px;
+    width: 300px;
+    font-weight: bold;
+    color: var(--white);
+    background: #666666;
+    border: none;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.user-menu {
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout {
+    background: var(--purple) !important;
+}

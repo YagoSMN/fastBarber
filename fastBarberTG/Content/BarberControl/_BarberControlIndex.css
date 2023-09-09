@@ -10,7 +10,6 @@
     justify-content: space-between;
     width: 100%;
     padding-bottom: 20px;
-    border-bottom: 2px solid white;
 }
 .DateTimeNow {
     display: flex;
@@ -39,31 +38,56 @@
     cursor: pointer;
 }
 
-.morning-costumers {
+.time-costumers {
+    border-top: 2px solid white;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 1.25rem;
 }
 
-.morning-costumers h2 {
+.time-costumers h2 {
     margin: 20px 0;
 }
 
 .circle-status {
     height: 10px;
     width: 10px;
-    background: springgreen;
     border-radius: 100%
 }
 
+.green {
+    background: seagreen;
+}
+
+.yellow {
+    background: yellow;
+}
+
+.red {
+    background: red;
+}
 .costumer {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between;
     background: var(--bg-graydark);
     height: 5rem;
     width: 100%;
     padding: 1rem;
     border-radius: 6px;
+    font-weight: bold;
+}
+
+.costumer-description {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.costumer-contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

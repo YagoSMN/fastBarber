@@ -17,23 +17,23 @@
     gap: 10px;
 }
 
-.toPurple {
-    color: var(--purple);  
+.toPC {
+    color: var(--primary-color);  
 }
 
 .btn-filter {
     display: flex;
     align-items: center;
     font-weight: bold;
-    background: var(--purple);
+    background: var(--primary-color);
     border: none;
     padding: 8px 50px;
-    color: var(--white);
+    color: var(--font-color);
     border-radius: 4px;
 }
 
 .btn-filter:hover {
-    background: var(--dark-purple);
+    background: var(--secondary-color);
     transition: 0.4s;
     cursor: pointer;
 }
@@ -62,17 +62,18 @@
 }
 
 .yellow {
-    background: yellow;
+    background: orange;
 }
 
 .red {
     background: red;
 }
 .costumer {
+    margin: 10px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--bg-graydark);
+    background: var(--bg-color-dark);
     height: 5rem;
     width: 100%;
     padding: 1rem;
@@ -90,4 +91,11 @@
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.white-circle {
+    height: 6px;
+    width: 6px;
+    background: var(--white);
+    border-radius: 100%;
 }

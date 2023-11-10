@@ -13,7 +13,6 @@ namespace fastBarberTG.Models
         public string Sobrenome { get; set; }
         public DateTime DataNasc { get; set; }
         public string Tel { get; set; }
-        public string Bairro { get; set; }
-
+        public string Email { get; set; }
     }
 }

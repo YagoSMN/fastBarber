@@ -1,10 +1,9 @@
 ﻿
-
 .displayUser {
     display: flex;
     align-items: center;
     gap: 10px;
-    opacity: 0.8;
+    
 }
 
 .displayUser:hover {
@@ -12,9 +11,9 @@
     transition: 0.4s;
 }
 
-.user-bar{
-    height: 40px;
+.user-bar {
+    height: 20px;
+    width: 20px;
     border-radius: 100%;
-    cursor: pointer;
-    border: 1px solid var(--purple);
+    background: var(--primary-color);
 }

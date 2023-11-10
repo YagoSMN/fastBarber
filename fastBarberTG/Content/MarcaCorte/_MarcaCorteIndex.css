@@ -1,0 +1,100 @@
+﻿main {
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color-dark);
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Question {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.button-control {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.button-control button {
+    padding: 10px;
+    width: 100px;
+    background: var(--primary-color);
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+}
+
+.button-control button:hover {
+    background: var(--secondary-color);
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+#HaveAcc {
+    width: 50rem;
+}
+
+#HaveAccForm {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#HaveAccForm div {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+}
+
+#HaveAccForm div label {
+    text-align: center;
+    padding: 1rem;
+    width: 10rem;
+    background: var(--bg-color);
+    border-radius: 6px;
+}
+
+#HaveAccForm div input {
+    width: 300px;
+    border: 0;
+    border-radius: 4px;
+    background: var(--bg-color-s);
+    padding: 10px;
+    font-weight: bold;
+    color: var(--bg-color-dark);
+}
+
+
+#HaveAccForm div input:focus {
+    outline: 0;
+    background: var(--primary-color);
+    transition: 0.4s;
+}
+
+::placeholder {
+    color: var(--bg-color);
+}
+
+#register {
+    margin-top: 2rem;
+    padding: 10px;
+    font-weight: bold;
+    border: 0;
+    border-radius: 4px;
+    background: var(--primary-color);
+}
+
+#register:hover {
+    cursor: pointer; 
+    background: var(--secondary-color);
+}

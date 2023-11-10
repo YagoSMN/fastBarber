@@ -6,16 +6,20 @@
 }
 
 :root {
-    --purple: #AB009A;
-    --dark-purple: #4E0046;
-    --bg-gray: #2D2D2D;
-    --bg-graydark: #1D1D1D;
-    --input: #181818;
+    --primary-color: #77F2DE;
+    --secondary-color: #00D9B6;
+    --bg-color: #45444E;
+    --bg-color-s: #D1D1D1;
+    --bg-color-dark: #1D1D1D;
+    --font-color: #3A3A3A;
     --white: #FFF;
 }
 
 body {
-    background: var(--bg-gray);
+    background: var(--bg-color);
     color: white;
 }
 
+body, main, form, input, label {
+    font-family: 'Roboto', sans-serif;
+}

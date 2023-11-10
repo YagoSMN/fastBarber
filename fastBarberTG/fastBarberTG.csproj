@@ -121,6 +121,7 @@
     <Content Include="Content\BarberControl\_BarberControlIndex.css" />
     <Content Include="Content\Logo\circlepng.png" />
     <Content Include="Content\Logo\LoginLogo.png" />
+    <Content Include="Content\MarcaCorte\_MarcaCorteIndex.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Layout\UserStyle.css" />
     <Content Include="Content\Home\_HomeIndex.css" />
@@ -133,17 +134,25 @@
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
+    <Content Include="scripts\scriptPages\_MarcarCorte.js" />
+    <Content Include="scripts\_BarberControlIndex.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BarberControlController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MarcarCorteController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Contexto\Contexto.cs" />
     <Compile Include="Models\Costumer.cs" />
+    <Compile Include="Models\Geral.cs" />
+    <Compile Include="Models\HorariosAgREPO.cs" />
+    <Compile Include="Models\HorariosMarcadosModel.cs" />
+    <Compile Include="Models\NewCostumerREPO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +171,7 @@
     <Content Include="Views\BarberControl\Index.cshtml" />
     <Content Include="Views\BarberControl\CostumerDetails.cshtml" />
     <Content Include="Views\User\Settings.cshtml" />
+    <Content Include="Views\MarcarCorte\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

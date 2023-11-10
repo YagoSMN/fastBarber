@@ -1,0 +1,84 @@
+﻿
+@{
+	Layout = null;
+	ViewBag.Title = "Index";
+	<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+	<link href="~/Content/MarcaCorte/_MarcaCorteIndex.css" rel="stylesheet" type="text/css" />
+	<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+}
+
+<body>
+	<main>
+		<div id="renderDiv">
+			<div class="Question" id="Question">
+				<h2>Já possui cadastro?</h2>
+				<div class="button-control">
+					<button id="btn-haveacc">SIM</button>
+					<button id="btn-donthaveacc">NÃO</button>
+				</div>
+			</div>
+			<div class="HaveAcc" style="display: none;" id="HaveAcc">
+				<form id="HaveAccForm" onsubmit="fastBarber.cadastrarCostumer()">
+					<div>
+						<label for="nome">Nome</label>
+						<input id="input-Nome" type="text" name="Nome" placeholder="Insira seu nome..."/>
+					</div>
+					<div >
+						<label for="subname">Sobrenome</label>
+						<input id="input-subnome" type="text" name="Sobrenome" placeholder="Insira seu sobrenome..."/>
+					</div>
+					<div >
+						<label for="Cpf">CPF</label>
+						<input id="input-cpf" type="text" name="Cpf" placeholder="***.***.***-**"/>
+					</div>
+					<div >
+						<label for="DataNasc">Data Nascimento</label>
+						<input id="input-datanasc" type="date" name="DataNasc" placeholder="**/**/****"/>
+					</div>
+					<div >
+						<label for="Tel">Telefone</label>
+						<input id="input-tel" type="text" name="Tel" placeholder="(16) 99999-2005"/>
+					</div>
+                    <div>
+                        <label for="Email">Email</label>
+                        <input id="input-email" type="email" name="Email" placeholder="seuemail@teste.com" />
+                    </div>
+					<div>
+						<button id="register" type="submit">REGISTRAR</button>
+					</div>
+				</form>
+			</div>
+			<div style="display: none;">
+				<div>
+					<p>Olá, Nome</p>
+				</div>
+				<div>
+					<p>Não encontramos nenhum horário marcado</p>
+				</div>
+				<div>
+
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+<script src="~/scripts/scriptPages/_MarcarCorte.js"></script>
+<script>
+    $("#btn-donthaveacc").click(function () {
+        $("#Question").hide();
+        $("#HaveAcc").show();
+    })
+
+    fastBarber.init({
+        urls: {
+            newCostumer: '@Url.Action("NewCostumer")'
+        }
+    })
+</script>
+

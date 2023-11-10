@@ -11,25 +11,40 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
-<body>
+<body onload="BarberControl.AtualizaDia()">
 	<header>
 		<a href="/BarberControl/">
 			<img src="~/Content/Logo/LoginLogo.png"/>
 		</a>
-		<div class="displayUser">
-			<div class="user-bar">
-
-			</div>
-			<p>Olá, user!</p>
-		</div>
+		
+		<a onclick="BarberControl.settings()" class="displayUser">
+			<span class="material-symbols-outlined">
+				menu
+			</span>
+			<span>Olá, user!</span>
+		</a>
 	</header>
 
 	<main>
-	    @RenderBody()
+		<div id="renderDiv">
+			@RenderBody()
+		</div>
+		<div id="requestDiv">
+
+		</div>
 	</main>
 
 	<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/_BarberControlIndex.js"></script>
+    <script>
+
+    BarberControl.init({
+        urls: {
+            userSettings: '/User/Settings'
+        },
+    });
+    </script>
 </body>
 </html>

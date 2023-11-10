@@ -31,11 +31,12 @@ form {
 }
 
 .inputs input {
-    color: white;
+    color: (--font-color);
+    font-weight: bold;
     padding: 10px;
     height: 2rem;
     width: 25rem;
-    background: var(--input);
+    background: var(--bg-color-s);
     border: none;
     border-radius: 4px;
     border: 1px solid transparent;
@@ -56,13 +57,12 @@ form {
 
 .forgot a {
     text-decoration: none;
-    color: var(--white);
-    opacity: 0.5;
+    color: var(--primary-color);
     border-bottom: 1px solid transparent;
 }
 
 .forgot a:hover {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--primary-color);
     transition: 0.4s;
 }
 
@@ -73,12 +73,12 @@ button[type="submit"] {
     border: none;
     border-radius: 6px;
     font-weight: bold;
-    background: var(--purple);
-    color: var(--white);
+    background: var(--primary-color);
+    color: var(--font-color);
 }
 
 button[type="submit"]:hover {
-    background: var(--dark-purple);
+    background: var(--secondary-color);
     cursor: pointer;
     transition: 0.4s;
 }

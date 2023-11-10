@@ -8,7 +8,7 @@
 }
 
 .details {
-    background: var(--bg-graydark);
+    background: var(--bg-color-dark);
     height: 35rem;
     width: 40rem;
     border-radius: 6px;

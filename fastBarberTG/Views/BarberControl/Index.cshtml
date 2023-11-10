@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<fastBarberTG.Models.HorariosMarcadosModel>
+@using fastBarberTG.Models
 @{
 	<link href="~/Content/BarberControl/_BarberControlIndex.css" rel="stylesheet" type="text/css" />
     ViewBag.Title = "Index";
@@ -9,91 +10,98 @@
     
 	<div class="flex-control">
 		<div class="DateTimeNow">
-			<h2>Segunda-Feira <span class="toPurple">04/09</span></h2>
-			<img src="~/Content/Logo/circlepng.png"/>
-			<h2>AM <span id="timeNow">08:00</span></h2> @*Aqui deve ir função para atualizar horário de hora em hora*@
+			<h2 id="NomeDiaSemana"></h2>
+			<div class="white-circle"></div>
+			<h2 class="toPC" id="DataDaSemana"></h2> 
 		</div>
 		<button class="btn-filter"><span class="material-symbols-outlined">filter_alt</span>Filtrar</button>
 	</div>
     
 	<div class="time-costumers">
 		<h2>Manhã</h2>
-		<div class="costumer">
-			
-			<div class="costumer-description">
-				<div class="circle-status red"></div>
-				<h2>Douglas Silva</h2> @*Aqui vai o nome do cliente*@
-				<img src="~/Content/Logo/circlepng.png"/>
-				<h2>AM <span class="toPurple">08:00</span></h2> @*Aqui vai o horário marcado pelo cliente*@
-				<img src="~/Content/Logo/circlepng.png"/>
-				<h2>20 Anos</h2> @*Aqui vai a idade do cliente, realizando o calculo pelo formulário informado*@
-			</div>
-			<div class="costumer-contact">
-				<span class="material-symbols-outlined">
-					call
-				</span>
-				<p>(16) 99148-2005</p>
-			</div>
-		</div>
+		@foreach (var item in Model)
+		{
+			if (item.RetornaHoraDiaInt() < 12)
+			{
+				<div class="costumer">
+					<div class="costumer-description">
+						<div class="circle-status @item.RetornaStatus()"></div>
+						<h2>@item.Nome @item.Sobrenome.Substring(0, 1).</h2> @*Aqui vai o nome do cliente*@
+						<div class="white-circle"></div>
+						<h2><span class="toPC" s>@item.HoraCorte()</span></h2> @*Aqui vai o horário marcado pelo cliente*@
+						<div class="white-circle"></div>
+						<h2>@item.RetornoIdade() Anos</h2> @*Aqui vai a idade do cliente, realizando o calculo pelo formulário informado*@
+					</div>
+					<div class="costumer-contact">
+						<span class="material-symbols-outlined">
+							call
+						</span>
+						<p>(16) @item.Tel</p>
+					</div>
+				</div>
+			}
+		}
 	</div>
 	<div class="time-costumers">
 		<h2>Tarde</h2>
-		<div class="costumer">
-			
-			<div class="costumer-description">
-				<div class="circle-status green"></div>
-				<h2>Douglas Silva</h2> @*Aqui vai o nome do cliente*@
-				<img src="~/Content/Logo/circlepng.png"/>
-				<h2>AM <span class="toPurple">08:00</span></h2> @*Aqui vai o horário marcado pelo cliente*@
-				<img src="~/Content/Logo/circlepng.png"/>
-				<h2>20 Anos</h2> @*Aqui vai a idade do cliente, realizando o calculo pelo formulário informado*@
-			</div>
-			<div class="costumer-contact">
-				<span class="material-symbols-outlined">
-					call
-				</span>
-				<p>(16) 99148-2005</p>
-			</div>
-		</div>
+		@foreach (var item in Model)
+		{
+			if (item.RetornaHoraDiaInt() >= 12 && item.RetornaHoraDiaInt() < 18)
+			{
+				<div class="costumer">
+					<div class="costumer-description">
+						<div class="circle-status @item.RetornaStatus()"></div>
+						<h2>@item.Nome @item.Sobrenome.Substring(0, 1).</h2> @*Aqui vai o nome do cliente*@
+						<div class="white-circle"></div>
+						<h2><span class="toPC" s>@item.HoraCorte()</span></h2> @*Aqui vai o horário marcado pelo cliente*@
+						<div class="white-circle"></div>
+						<h2>@item.RetornoIdade() Anos</h2> @*Aqui vai a idade do cliente, realizando o calculo pelo formulário informado*@
+					</div>
+					<div class="costumer-contact">
+						<span class="material-symbols-outlined">
+							call
+						</span>
+						<p>(16) @item.Tel</p>
+					</div>
+				</div>
+			}
+		}
 	</div>
     
 	<div class="time-costumers">
 		<h2>Noite</h2>
-		<div class="costumer">
-			
-			<div class="costumer-description">
-				<div class="circle-status yellow"></div>
-				<h2>Douglas Silva</h2> @*Aqui vai o nome do cliente*@
-				<img src="~/Content/Logo/circlepng.png"/>
-				<h2>AM <span class="toPurple">08:00</span></h2> @*Aqui vai o horário marcado pelo cliente*@
-				<img src="~/Content/Logo/circlepng.png"/>
-				<h2>20 Anos</h2> @*Aqui vai a idade do cliente, realizando o calculo pelo formulário informado*@
-			</div>
-			<div class="costumer-contact">
-				<span class="material-symbols-outlined">
-					call
-				</span>
-				<p>(16) 99148-2005</p>
-			</div>
-		</div>
+		@foreach (var item in Model)
+		{
+			if (item.RetornaHoraDiaInt() >= 18 && item.RetornaHoraDiaInt() < 24)
+			{
+				<div class="costumer">
+					<div class="costumer-description">
+						<div class="circle-status @item.RetornaStatus()"></div>
+						<h2>@item.Nome</h2> @*Aqui vai o nome do cliente*@
+						<div class="white-circle"></div>
+						<h2><span class="toPC" s>@item.HoraCorte()</span></h2> @*Aqui vai o horário marcado pelo cliente*@
+						<div class="white-circle"></div>
+						<h2>@item.RetornoIdade() Anos</h2> @*Aqui vai a idade do cliente, realizando o calculo pelo formulário informado*@
+					</div>
+					<div class="costumer-contact">
+						<span class="material-symbols-outlined">
+							call
+						</span>
+						<p>(16) @item.Tel</p>
+					</div>
+				</div>
+
+			}
+		}
 	</div>
 </div>
 
+<script src="~/scripts/_BarberControlIndex.js"></script>
+<script>
 
-			@*<div class="costumer">
-						
-				<div class="costumer-description">
-					<div class="circle-status yellow"></div>
-					<h2>Douglas Silva</h2>  Aqui vai o nome do cliente
-					<img src="~/Content/Logo/circlepng.png"/>
-					<h2>AM <span class="toPurple">08:00</span></h2> Aqui vai o horário marcado pelo cliente
-					<img src="~/Content/Logo/circlepng.png"/>
-					<h2>20 Anos</h2> Aqui vai a idade do cliente, realizando o calculo pelo formulário informado
-				</div>
-				<div class="costumer-contact">
-					<span class="material-symbols-outlined">
-						call
-					</span>
-					<p>(16) 99148-2005</p> Aqui vai o telefone do cliente.
-				</div>
-			</div>*@
+    BarberControl.init({
+        urls: {
+            
+        },
+    });
+</script>

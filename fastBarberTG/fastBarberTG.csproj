@@ -119,6 +119,8 @@
   <ItemGroup>
     <Content Include="Content\BarberControl\_BarberControlCostumerDetails.css" />
     <Content Include="Content\BarberControl\_BarberControlIndex.css" />
+    <Content Include="Content\iziToast.css" />
+    <Content Include="Content\iziToast.min.css" />
     <Content Include="Content\Logo\circlepng.png" />
     <Content Include="Content\Logo\LoginLogo.png" />
     <Content Include="Content\MarcaCorte\_MarcaCorteIndex.css" />
@@ -132,6 +134,8 @@
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\iziToast.js" />
+    <Content Include="scripts\iziToast.min.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="scripts\scriptPages\_MarcarCorte.js" />

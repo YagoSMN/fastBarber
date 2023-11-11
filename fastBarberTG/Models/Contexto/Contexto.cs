@@ -58,6 +58,7 @@ namespace fastBarberTG.Models
             return cmd.ExecuteReader();
         }
 
+
         public void Dispose()
         {
             if(connection.State == ConnectionState.Open)

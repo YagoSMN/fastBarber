@@ -4,6 +4,8 @@
 	ViewBag.Title = "Index";
 	<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 	<link href="~/Content/MarcaCorte/_MarcaCorteIndex.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/iziToast.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/iziToast.min.css" rel="stylesheet" type="text/css" />
 	<script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/iziToast.min.js" type="text/javascript"></script>
+    <script src="~/scripts/iziToast.js" type="text/javascript"></script>
 }
 
 <body>
@@ -23,6 +27,7 @@
 					<button id="btn-donthaveacc">NÃO</button>
 				</div>
 			</div>
+            <input type="hidden" id="cpf-cliente"/>
 			<div class="HaveAcc" style="display: none;" id="HaveAcc">
 				<form id="HaveAccForm" onsubmit="fastBarber.cadastrarCostumer()">
 					<div>
@@ -35,7 +40,7 @@
 					</div>
 					<div >
 						<label for="Cpf">CPF</label>
-						<input id="input-cpf" type="text" name="Cpf" placeholder="***.***.***-**"/>
+						<input id="input-cpf" type="text" name="Cpf" maxlength="11" oninput="fastBarber.applyCpfMask(this)" placeholder="***.***.***-**"/>
 					</div>
 					<div >
 						<label for="DataNasc">Data Nascimento</label>
@@ -43,7 +48,7 @@
 					</div>
 					<div >
 						<label for="Tel">Telefone</label>
-						<input id="input-tel" type="text" name="Tel" placeholder="(16) 99999-2005"/>
+						<input id="input-tel" type="text" name="Tel" oninput="fastBarber.applyPhoneMask(this)" placeholder="(16) 99999-2005" maxlength="15"/>
 					</div>
                     <div>
                         <label for="Email">Email</label>

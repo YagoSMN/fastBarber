@@ -66,11 +66,17 @@
                         <h1>Insira seu CPF</h1>
                         <input id="cpf-input" type="text" name="Cpf" maxlength="11" oninput="fastBarber.applyCpfMask(this)" placeholder="***.***.***-**" />
                         <button type="submit">BUSCAR</button>
+                        <input type="hidden" id="search-cpfcliente"/>
                     </form>
 			</div>
 		</div>
             <div id="response" style="display: none;">
 
+            </div>
+            <div id="final-screen" style="display: none;" class="final-screen">
+                <h1>Horarário marcado!</h1>
+                <h1>Deseja marcar outro horário no sistema?</h1>
+                <button type="button" onclick="fastBarber.Retornar()">RETORNAR</button>
             </div>
 	</main>
 </body>

@@ -39,32 +39,35 @@
         $("#response").html(" ");
     }
 
-    var BuscaOcupado = function (data) {
-        $.get(config.urls.BuscaOcupado, { data: data.toString().substring(0, 10)}).done(function (response) {
-            $(".searchHorario").removeClass("bg-highlight");
-            $("#grid-horas").show("slow");
-            $(this).addClass("bg-highlight");
+    var BuscaOcupado = function (a) {
+        $.get(config.urls.BuscaOcupado, { data: $(a).attr('data-diaSemana').substring(0, 10) }).done(function (response) {
+            $("[data-diaSemana]").removeClass("bg-highlight");
             $("#grid-horas").html(" ");
-            console.log(response)
+            $(a).addClass("bg-highlight");
+
             var horasExistem = [];
+
             response.forEach(function (corte) {
                 var hora = corte.DataCorte.split(" ")[1];
-                var horaDecimal = hora.substr(0, 2);
-                horasExistem.push(parseInt(horaDecimal));
+                var partesHora = hora.split(":");
+                var horaDecimal = parseInt(partesHora[0]) + (parseInt(partesHora[1]) / 60);
+                horasExistem.push(horaDecimal);
             });
 
             console.log(horasExistem);
-            var horasDesejadas = [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19];
+
+            var horasDesejadas = [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 20, 20.5, 21];
 
             var horasNaoMarcadas = horasDesejadas.filter(function (hora) {
                 var horaArredondada = Math.round(hora * 2) / 2;
-                return horasExistem.includes(horaArredondada) === false;
+                return !horasExistem.includes(horaArredondada);
             });
 
             horasNaoMarcadas.forEach(function (hora) {
-                var div = `<div class="hora-marcada" onclick="Corte.AdicionarHora('${data.substr(0, 10)}', '${formatarHora(hora)}')"><p>${formatarHora(hora)}</p><div class="circle-green"></div></div>`;
+                var div = `<div class="hora-marcada" onclick="Corte.AdicionarHora(this, '${$(a).attr('data-diaSemana').substr(0, 10)}', '${formatarHora(hora)}')"><p>${formatarHora(hora)}</p><div class="circle-green"></div></div>`;
                 $("#grid-horas").append(div);
             });
+            $("#grid-horas").show("slow");
         }).fail(function () {
 
         });
@@ -77,14 +80,31 @@
         return horasInteiras + ":" + minutos;
     }
 
-    var AdicionarHora = function (data, hora) {
+    var AdicionarHora = function (x, data, hora) {
         $("#addhora-corte").val(data + " " + hora);
-        console.log(data + " " + hora)
+        $(".hora-marcada").removeClass("div-highlight");
+
+        $(x).addClass("div-highlight");
     }
 
     var MarcarHorario = function () {
         var data = $("#addhora-corte").val();
-        var cpf = $("#").
+        var cpf = $("#search-cpfcliente").val();
+
+        $.post(config.urls.MarcarHorario, { cpf: cpf, data: data }).done(function () {
+            $("#final-screen").show("slow");
+            $("#response").hide();
+            iziToast.success({
+                color: 'blue',
+                title: 'Success',
+                message: 'Horário marcado!',
+            });
+        }).fail(function () {
+            iziToast.error({
+                title: 'Erro',
+                message: 'Erro ao marcar horário!',
+            });
+        })
     }
 
     return {

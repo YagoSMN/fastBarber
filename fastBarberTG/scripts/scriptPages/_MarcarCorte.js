@@ -83,6 +83,9 @@
                 $("#input-tel").val("");
                 $("#input-email").val("");
 
+                $("#DontHaveAcc").hide();
+                $("#HaveAcc").show("slow");
+
             }
 
             if (data === 'Cadastro inválido, Cliente já existe!') {
@@ -122,6 +125,7 @@
         $.get(config.urls.searchHorario, model).done(function (html) {
             $("#HaveAcc").hide();
             $("#response").html(html);
+            $("#search-cpfcliente").val(cpf);
             $("#response").show("slow");
 
         }).fail(function (msg) {
@@ -229,12 +233,18 @@
         }
     }
 
+    var Retornar = function () {
+        $("#final-screen").hide();
+        $("#Question").show();
+    }
+
     return {
         init: init,
         cadastrarCostumer: cadastrarCostumer, 
         applyCpfMask: applyCpfMask,
         applyPhoneMask: applyPhoneMask,
-        searchHorario: searchHorario
+        searchHorario: searchHorario,
+        Retornar: Retornar
     };
 })();
 

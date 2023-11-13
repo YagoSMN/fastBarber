@@ -65,7 +65,7 @@ else
                 {
                     <div>
                         <label>@date.ToString("dddd").ToUpper().Substring(0, 3)</label>
-                        <input type="button" class="searchHorario" value="@date.Day" onclick="Corte.BuscaOcupado('@date')" />
+                        <input type="button" class="searchHorario" data-diaSemana="@date" value="@date.Day" onclick="Corte.BuscaOcupado(this)" />
                     </div>
                 }
             </div>

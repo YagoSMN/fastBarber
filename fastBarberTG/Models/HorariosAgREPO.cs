@@ -12,11 +12,6 @@ namespace fastBarberTG.Models
     {
         private Contexto contexto;
 
-        private enum Procedures
-        {
-            FBSP_MostraHorariosMarc
-        }
-
         public IEnumerable<HorariosMarcadosModel> HorariosMarcados()
         {
             using (contexto = new Contexto())
@@ -44,5 +39,63 @@ namespace fastBarberTG.Models
                 return obj;
             }
         }
+
+        public HorariosMarcadosModel BuscarCorteCliente(Costumer costumer)
+        {
+            using (contexto = new Contexto())
+            {
+                var Cpf = new SqlParameter("@Cpf", SqlDbType.Decimal) { Value = costumer.Cpf };
+                var reader = contexto.ExecutaProcedureComRetorno("FBSP_BuscarCorteCliente", Cpf);
+
+                if (reader.Read())
+                {
+                    var obj = new HorariosMarcadosModel()
+                    {
+                        HorarioId = int.Parse(reader["Id"].ToString()),
+                        Id_Cliente = int.Parse(reader["Id_Cliente"].ToString()),
+                        StatusCorte = int.Parse(reader["StatusCorte"].ToString()),
+                        BarberId = int.Parse(reader["BarberId"].ToString()),
+                        DataCorte = DateTime.Parse(reader["DataCorte"].ToString()),
+                        TempoCorte = reader["TempoCorte"].ToString()
+                    };
+
+                    return obj;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public void DesmarcarCorte(int id)
+        {
+            using (contexto = new Contexto())
+            {
+                var ID = new SqlParameter("@Id", SqlDbType.Int) { Value = id };
+                contexto.ExecutaProcedure("FBSP_DesmarcarHorario", ID);
+            }
+        }
+
+        public IEnumerable<HorariosOcupados> BuscaOcupado (string data)
+        {
+            using(contexto = new Contexto())
+            {
+                var Data = new SqlParameter("@DataMarcacao", SqlDbType.NVarChar, 10) { Value = data };
+                var reader = contexto.ExecutaProcedureComRetorno("FBSP_BuscaOcupadoData", Data);
+                var listObj = new List<HorariosOcupados>();
+                while (reader.Read())
+                {
+                    var obj = new HorariosOcupados()
+                    {
+                        Id = int.Parse(reader["Id"].ToString()),
+                        DataCorte = (reader["DataCorte"].ToString())
+                    };
+                    listObj.Add(obj);
+                }
+                return listObj;
+            }
+        }
+
     }
 }

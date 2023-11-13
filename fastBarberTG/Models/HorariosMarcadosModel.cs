@@ -13,6 +13,8 @@ namespace fastBarberTG.Models
         public int Id_Cliente { get; set; }
         public DateTime DataCorte { get; set; }
         public int StatusCorte { get; set; }
+        public int BarberId { get; set; }
+        public string TempoCorte { get; set; }
 
         public string RetornoIdade()
         {
@@ -31,10 +33,10 @@ namespace fastBarberTG.Models
 
         public string HoraCorte()
         {
-            return DataCorte.ToString("tt HH:mm");
+            return DataCorte.ToShortTimeString();
         }
 
-        public string DataCorteFormatado() => DataCorte.Date.ToString();
+        public string DataCorteFormatado() => DataCorte.ToShortDateString();
 
         public string RetornaStatus()
         {

@@ -1,0 +1,89 @@
+﻿@model fastBarberTG.Models.HorariosMarcadosModel
+
+@{
+    ViewBag.Title = "_listaCorteCliente";
+    Layout = null;
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/MarcaCorte/_listaCorteCliente.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/iziToast.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/iziToast.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/iziToast.min.js" type="text/javascript"></script>
+    <script src="~/scripts/iziToast.js" type="text/javascript"></script>
+}
+
+@{
+    // Função para obter as próximas 7 datas
+    Func<List<DateTime>> getNextSevenDays = () =>
+    {
+        List<DateTime> dates = new List<DateTime>();
+        DateTime currentDate = DateTime.Now;
+
+        for (int i = 0; i < 7; i++)
+        {
+            dates.Add(currentDate.AddDays(i));
+        }
+
+        return dates;
+    };
+}
+  
+@if (Model != null)
+{
+    <div class="card">
+        <div>
+            <input type="hidden" id="id-horariomarc" value="@Model.HorarioId"/> 
+            <p>Encontramos um horário marcado, no dia <span>@Model.DataCorteFormatado()</span> às <span>@Model.HoraCorte()</span></p>
+        </div>
+        <h1>Deseja cancelar o horário do corte?</h1>
+        <div class="flex-buttons">
+            <input type="button" class="blue" id="input-recusar" value="NÃO" onclick="Corte.Nofunction()" />
+            <input type="button" class="red" id="input-aceitar" value="SIM" onclick="Corte.DesmarcarCorte()" />
+        </div>
+    </div>
+}
+else
+{
+    <div>
+        <div class="text-label">
+            <p>Não encontramos nenhum horário marcado</p>
+        </div>
+        <div class="text-label">
+            <p>Deseja agendar em qual horário?</p>
+        </div>
+
+        <div class="fastbarber-calendar">
+            <input type="hidden" id="cpf-cliente"/>
+            <input type="hidden" id="cpf-cliente" />
+            <div class="flex-btn-days">
+                @foreach (DateTime date in getNextSevenDays())
+                {
+                    <div>
+                        <label>@date.ToString("dddd").ToUpper().Substring(0, 3)</label>
+                        <input type="button" class="searchHorario" value="@date.Day" onclick="Corte.BuscaOcupado('@date')" />
+                    </div>
+                }
+            </div>
+            <div id="grid-horas" style="display: none;" class="grid-horas">
+                <div class="hora-marcada">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+}
+<script src="~/scripts/scriptPages/_listaCorteCliente.js"></script>
+<script>
+    Corte.init({
+        urls: {
+            desmarcarCorte: '@Url.Action("DesmarcarCorte")',
+            BuscaOcupado: '@Url.Action("BuscaOcupado")'
+        }
+    })
+</script>

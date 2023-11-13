@@ -123,6 +123,7 @@
     <Content Include="Content\iziToast.min.css" />
     <Content Include="Content\Logo\circlepng.png" />
     <Content Include="Content\Logo\LoginLogo.png" />
+    <Content Include="Content\MarcaCorte\_listaCorteCliente.css" />
     <Content Include="Content\MarcaCorte\_MarcaCorteIndex.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Layout\UserStyle.css" />
@@ -138,6 +139,7 @@
     <Content Include="scripts\iziToast.min.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
+    <Content Include="scripts\scriptPages\_listaCorteCliente.js" />
     <Content Include="scripts\scriptPages\_MarcarCorte.js" />
     <Content Include="scripts\_BarberControlIndex.js" />
     <Content Include="Web.config" />
@@ -156,6 +158,7 @@
     <Compile Include="Models\Geral.cs" />
     <Compile Include="Models\HorariosAgREPO.cs" />
     <Compile Include="Models\HorariosMarcadosModel.cs" />
+    <Compile Include="Models\HorariosOcupados.cs" />
     <Compile Include="Models\NewCostumerREPO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -176,6 +179,8 @@
     <Content Include="Views\BarberControl\CostumerDetails.cshtml" />
     <Content Include="Views\User\Settings.cshtml" />
     <Content Include="Views\MarcarCorte\Index.cshtml" />
+    <Content Include="Views\MarcarCorte\_listaCorteCliente.cshtml" />
+    <Content Include="Views\MarcarCorte\_DontExistsClient.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -185,6 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="scripts\NewFolder1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -2,7 +2,9 @@
 
     var config = {
         urls: {
-            newCostumer: ''
+            newCostumer: '',
+            searchHorario: '',
+
         },
     };
 
@@ -80,17 +82,50 @@
                 $("#input-datanasc").val("");
                 $("#input-tel").val("");
                 $("#input-email").val("");
+
             }
 
             if (data === 'Cadastro inválido, Cliente já existe!') {
                 iziToast.error({
                     title: 'Error',
-                    message: data,
+                    message: "CPF já cadastrado!",
                 });
             }
 
         }).fail(function (msg) {
             alert("Erro na requisição!" + msg)
+        })
+    }
+
+    var searchHorario = function () {
+        event.preventDefault();
+        var cpf = formatCpf($("#cpf-input").val());
+
+        if (!validateCPF(cpf)) {
+            iziToast.error({
+                title: 'CPF inválido',
+                message: 'Insira um CPF válido',
+            });
+            return
+        }
+
+        var model = {
+            Id: 0,
+            Cpf: cpf,
+            Nome: '',
+            Sobrenome: '',
+            DataNasc: '',
+            Tel: '',
+            Email: ''
+        }
+
+        $.get(config.urls.searchHorario, model).done(function (html) {
+            $("#HaveAcc").hide();
+            $("#response").html(html);
+            $("#response").show("slow");
+
+        }).fail(function (msg) {
+            alert("Erro na requisição!");
         })
     }
 
@@ -162,42 +197,44 @@
     }
 
     function applyPhoneMask(input) {
-        // Remove non-digit characters
         let cleanedValue = input.value.replace(/\D/g, '');
 
-        // Apply the phone mask
         if (cleanedValue.length >= 10) {
             cleanedValue = `(${cleanedValue.substring(0, 2)}) ${cleanedValue.substring(2, 7)}-${cleanedValue.substring(7)}`;
         }
-
-        // Update the input value
         input.value = cleanedValue;
     }
 
     function validateDate(data) {
-        let selectedDate = new Date(data);
+        // Convert the input date string to a Date object
+        const selectedDate = new Date(data);
+
         // Get the current date
-        let currentDate = new Date();
+        const currentDate = new Date();
 
-        // Define a minimum age (e.g., 18 years)
-        let minimumAge = 14;
+        // Calculate the current year
+        const currentYear = currentDate.getFullYear();
 
-        // Set the minimum allowed birthdate
-        let minimumBirthdate = new Date(currentDate.getFullYear() - minimumAge, currentDate.getMonth(), currentDate.getDate());
+        // Calculate the birth year
+        const birthYear = selectedDate.getFullYear();
 
-        // Check if the selected date is valid
-        if (isNaN(selectedDate) || selectedDate > currentDate || selectedDate < minimumBirthdate) {
-            return false;
-        } else {
+        // Calculate the age
+        const age = currentYear - birthYear;
+
+        // Check if the age is 14 or more
+        if (age >= 14) {
             return true;
+        } else {
+            return false;
         }
     }
 
     return {
         init: init,
-        cadastrarCostumer: cadastrarCostumer,
+        cadastrarCostumer: cadastrarCostumer, 
         applyCpfMask: applyCpfMask,
-        applyPhoneMask: applyPhoneMask
+        applyPhoneMask: applyPhoneMask,
+        searchHorario: searchHorario
     };
 })();
 

@@ -32,19 +32,31 @@ namespace fastBarberTG.Models
                 resultParameter.Direction = ParameterDirection.Output;
 
                 var parameters = new SqlParameter[] { Cpf, Nome, SNome, DataNasc, Tel, Email, resultParameter };
-
-                // Assuming ExecutaProcedureComRetorno returns a SqlDataReader
                 SqlDataReader reader = contexto.ExecutaProcedureComRetorno("FBSP_AddOrDenyCostumer", parameters);
-
-                // Retrieve the result message from the output parameter
                 string resultMessage = resultParameter.Value.ToString();
-
-                // Handle the result message accordingly (e.g., show in an alert)
-                // You might want to close the SqlDataReader here or handle it appropriately based on your application logic.
-
                 return resultMessage;
+            } 
+        }
+
+
+        public int ExistsCostumer(Costumer costumer)
+        {
+            using (contexto = new Contexto())
+            {
+                var Cpf = new SqlParameter("@Cpf", SqlDbType.Decimal) { Value = costumer.Cpf };
+                var reader = contexto.ExecutaProcedureComRetorno("FBSP_ExistsCostumer", Cpf);
+
+                int result = 0;
+                while (reader.Read())
+                {
+                    result = int.Parse(reader["Result"].ToString());
+                };
+
+                return result;
+
             }
         }
+
 
     }
 }

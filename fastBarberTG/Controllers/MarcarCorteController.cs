@@ -8,14 +8,14 @@ using System.Data.SqlClient;
 
 namespace fastBarberTG.Controllers
 {
-    [Route("cortes")]
     public class MarcarCorteController : Controller
     {
         private NewCostumerREPO _newCostumerREPO;
-
+        private HorariosAgREPO _horariosAgREPO;
         public MarcarCorteController()
         {
             _newCostumerREPO = new NewCostumerREPO();
+            _horariosAgREPO = new HorariosAgREPO();
         }
 
         public ActionResult Index()
@@ -33,6 +33,35 @@ namespace fastBarberTG.Controllers
             {
                 return ex.Message.ToString();
             }
+        }
+
+        public int ExistsCostumer(Costumer costumer)
+        {
+            return _newCostumerREPO.ExistsCostumer(costumer);
+        }
+
+        public ActionResult procurarCortes(Costumer costumer)
+        {
+            if( ExistsCostumer(costumer) == 1)
+            {
+                var result = _horariosAgREPO.BuscarCorteCliente(costumer);
+                return View("_listaCorteCliente", result);
+            } else
+            {
+                return View("_DontExistsClient");
+            }
+
+        }
+
+        public void DesmarcarCorte (int id )
+        {
+            _horariosAgREPO.DesmarcarCorte(id);
+        }
+
+        public JsonResult BuscaOcupado(string data)
+        {
+            var lista = _horariosAgREPO.BuscaOcupado(data);
+            return Json(lista, JsonRequestBehavior.AllowGet); 
         }
     }
 }

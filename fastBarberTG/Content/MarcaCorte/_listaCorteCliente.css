@@ -142,3 +142,23 @@ span {
     justify-content: center;
     border-radius: 10px;
 }
+
+.marcar-button-div {
+   display: flex;
+   justify-content: center;
+   margin: 15px 0;
+}
+
+.marcar-button {
+    padding: 1rem;
+    background: var(--primary-color);
+    font-weight: bold;
+    border: 0;
+    border-radius: 4px;
+}
+
+.marcar-button:hover {
+   transition: 0.4s;
+   background: var(--secondary-color);
+   cursor: pointer;
+}

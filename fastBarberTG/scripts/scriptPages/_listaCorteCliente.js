@@ -3,7 +3,8 @@
     var config = {
         urls: {
             desmarcarCorte: '',
-            BuscaOcupado: ''
+            BuscaOcupado: '',
+            MarcarHorario: ''
         },
     };
 
@@ -61,7 +62,7 @@
             });
 
             horasNaoMarcadas.forEach(function (hora) {
-                var div = `<div class="hora-marcada" onclick="Corte.AdicionarHora(${data}, ${formatarHora(hora)})"><p>${formatarHora(hora)}</p><div class="circle-green"></div></div>`;
+                var div = `<div class="hora-marcada" onclick="Corte.AdicionarHora('${data.substr(0, 10)}', '${formatarHora(hora)}')"><p>${formatarHora(hora)}</p><div class="circle-green"></div></div>`;
                 $("#grid-horas").append(div);
             });
         }).fail(function () {
@@ -77,7 +78,13 @@
     }
 
     var AdicionarHora = function (data, hora) {
+        $("#addhora-corte").val(data + " " + hora);
+        console.log(data + " " + hora)
+    }
 
+    var MarcarHorario = function () {
+        var data = $("#addhora-corte").val();
+        var cpf = $("#").
     }
 
     return {
@@ -85,7 +92,8 @@
         DesmarcarCorte: DesmarcarCorte,
         Nofunction: Nofunction,
         BuscaOcupado: BuscaOcupado,
-        AdicionarHora: AdicionarHora
+        AdicionarHora: AdicionarHora,
+        MarcarHorario: MarcarHorario
     };
 })();
 

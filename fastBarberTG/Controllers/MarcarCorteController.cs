@@ -63,5 +63,10 @@ namespace fastBarberTG.Controllers
             var lista = _horariosAgREPO.BuscaOcupado(data);
             return Json(lista, JsonRequestBehavior.AllowGet); 
         }
+
+        public void MarcarHorario (decimal cpf, string data)
+        {
+            _horariosAgREPO.MarcarHorario(cpf, data);
+        }
     }
 }

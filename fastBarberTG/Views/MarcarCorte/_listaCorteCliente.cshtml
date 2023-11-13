@@ -59,8 +59,7 @@ else
         </div>
 
         <div class="fastbarber-calendar">
-            <input type="hidden" id="cpf-cliente"/>
-            <input type="hidden" id="cpf-cliente" />
+            <input type="hidden" id="addhora-corte" />
             <div class="flex-btn-days">
                 @foreach (DateTime date in getNextSevenDays())
                 {
@@ -75,6 +74,9 @@ else
                 </div>
             </div>
         </div>
+        <div class="marcar-button-div">
+            <button class="marcar-button" type="button" onclick="Corte.MarcarHorario()">MARCAR HORÁRIO</button>
+        </div>
     </div>
     
 }
@@ -83,7 +85,8 @@ else
     Corte.init({
         urls: {
             desmarcarCorte: '@Url.Action("DesmarcarCorte")',
-            BuscaOcupado: '@Url.Action("BuscaOcupado")'
+            BuscaOcupado: '@Url.Action("BuscaOcupado")',
+            MarcarHorario: '@Url.Action("MarcarHorario")'
         }
     })
 </script>

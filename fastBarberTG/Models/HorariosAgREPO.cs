@@ -97,5 +97,14 @@ namespace fastBarberTG.Models
             }
         }
 
+        public void MarcarHorario(decimal cpf, string data)
+        {
+            using(contexto = new Contexto())
+            {
+                var Cpf = new SqlParameter("@Cpf", SqlDbType.Decimal) { Value = cpf };
+                var Data = new SqlParameter("@DataCorte", SqlDbType.NVarChar, 20) { Value = data };
+                contexto.ExecutaProcedure("FBSP_MarcarHorario", Cpf, Data);
+            }
+        }
     }
 }

@@ -16,6 +16,8 @@ namespace fastBarberTG.Controllers
             return View(repo.HorariosMarcados());
         }
 
+        
+
         public ActionResult CostumerDetails()
         {
             return View();

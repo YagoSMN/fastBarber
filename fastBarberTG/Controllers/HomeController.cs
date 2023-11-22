@@ -13,5 +13,10 @@ namespace fastBarberTG.Controllers
         {
             return View();
         }
+
+        public ActionResult login()
+        {
+            return Redirect(Url.Action("Index", "BarberControl"));
+        }
     }
 }

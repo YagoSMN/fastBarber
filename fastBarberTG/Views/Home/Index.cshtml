@@ -12,7 +12,7 @@
 <body>
 	<img src="~/Content/Logo/LoginLogo.png"/>
 	
-	<form>
+	<form action="@Url.Action("login", "Home")">
 		<div class="inputs">
 			<label for="username">username</label>
 			<input type="text" id="username" placeholder="user"/>
@@ -27,6 +27,6 @@
 			<a href="#">esqueceu sua senha?</a>
 		</div>
         
-		<button type="submit">ENTRAR</button>
+		<button type="submit" id="login-id">ENTRAR</button>
 	</form>
 </body>

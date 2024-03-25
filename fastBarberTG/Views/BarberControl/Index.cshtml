@@ -16,84 +16,77 @@
 		</div>
 		<button class="btn-filter"><span class="material-symbols-outlined">filter_alt</span>Filtrar</button>
 	</div>
-    
-	<div class="time-costumers">
-		<h2>Manhã</h2>
-		@foreach (var item in Model)
+	@foreach (var item in Model)
+	{
+		if (item.RetornaHoraDiaInt() < 12)
 		{
-			if (item.RetornaHoraDiaInt() < 12)
-			{
-				<div class="costumer">
-					<div class="costumer-description">
-						<div class="circle-status @item.RetornaStatus()"></div>
-						<h2>@item.Nome @item.Sobrenome.Substring(0, 1).</h2> @*Aqui vai o nome do cliente*@
-						<div class="white-circle"></div>
-						<h2><span class="toPC" s>@item.HoraCorte()</span></h2> @*Aqui vai o horário marcado pelo cliente*@
-						<div class="white-circle"></div>
-						<h2>@item.RetornoIdade() Anos</h2> @*Aqui vai a idade do cliente, realizando o calculo pelo formulário informado*@
-					</div>
-					<div class="costumer-contact">
-						<span class="material-symbols-outlined">
-							call
-						</span>
-						<p>(16) @item.Tel</p>
-					</div>
-				</div>
-			}
+			<div class="time-costumers">
+			    <h2>Manhã</h2>
+			    <div class="costumer">
+			        <div class="costumer-description">
+			            <div class="circle-status @item.RetornaStatus()"></div>
+			            <h2>@item.Nome @item.Sobrenome.Substring(0, 1).</h2>
+			            <div class="white-circle"></div>
+			            <h2><span class="toPC" s>@item.HoraCorte()</span></h2>
+			            <div class="white-circle"></div>
+			            <h2>@item.RetornoIdade() Anos</h2>
+			        </div>
+			        <div class="costumer-contact">
+			            <span class="material-symbols-outlined">
+			                call
+			            </span>
+			            <p>(16) @item.Tel</p>
+			        </div>
+			    </div>
+			</div>
 		}
-	</div>
-	<div class="time-costumers">
-		<h2>Tarde</h2>
-		@foreach (var item in Model)
-		{
-			if (item.RetornaHoraDiaInt() >= 12 && item.RetornaHoraDiaInt() < 18)
-			{
-				<div class="costumer">
-					<div class="costumer-description">
-						<div class="circle-status @item.RetornaStatus()"></div>
-						<h2>@item.Nome @item.Sobrenome.Substring(0, 1).</h2> @*Aqui vai o nome do cliente*@
-						<div class="white-circle"></div>
-						<h2><span class="toPC" s>@item.HoraCorte()</span></h2> @*Aqui vai o horário marcado pelo cliente*@
-						<div class="white-circle"></div>
-						<h2>@item.RetornoIdade() Anos</h2> @*Aqui vai a idade do cliente, realizando o calculo pelo formulário informado*@
-					</div>
-					<div class="costumer-contact">
-						<span class="material-symbols-outlined">
-							call
-						</span>
-						<p>(16) @item.Tel</p>
-					</div>
-				</div>
-			}
-		}
-	</div>
-    
-	<div class="time-costumers">
-		<h2>Noite</h2>
-		@foreach (var item in Model)
-		{
-			if (item.RetornaHoraDiaInt() >= 18 && item.RetornaHoraDiaInt() < 24)
-			{
-				<div class="costumer">
-					<div class="costumer-description">
-						<div class="circle-status @item.RetornaStatus()"></div>
-						<h2>@item.Nome</h2> @*Aqui vai o nome do cliente*@
-						<div class="white-circle"></div>
-						<h2><span class="toPC" s>@item.HoraCorte()</span></h2> @*Aqui vai o horário marcado pelo cliente*@
-						<div class="white-circle"></div>
-						<h2>@item.RetornoIdade() Anos</h2> @*Aqui vai a idade do cliente, realizando o calculo pelo formulário informado*@
-					</div>
-					<div class="costumer-contact">
-						<span class="material-symbols-outlined">
-							call
-						</span>
-						<p>(16) @item.Tel</p>
-					</div>
-				</div>
 
-			}
+		if (item.RetornaHoraDiaInt() >= 12 && item.RetornaHoraDiaInt() < 18)
+		{
+		    <div class="time-costumers">
+		        <h2>Tarde</h2>
+		        <div class="costumer">
+		            <div class="costumer-description">
+		                <div class="circle-status @item.RetornaStatus()"></div>
+		                <h2>@item.Nome @item.Sobrenome.Substring(0, 1).</h2>
+		                <div class="white-circle"></div>
+		                <h2><span class="toPC" s>@item.HoraCorte()</span></h2>
+		                <div class="white-circle"></div>
+		                <h2>@item.RetornoIdade() Anos</h2>
+		            </div>
+		            <div class="costumer-contact">
+		                <span class="material-symbols-outlined">
+		                    call
+		                </span>
+		                <p>@item.Tel</p>
+		            </div>
+		        </div>
+		    </div>
 		}
-	</div>
+
+		if (item.RetornaHoraDiaInt() >= 18 && item.RetornaHoraDiaInt() < 24)
+		{
+		    <div class="time-costumers">
+		        <h2>Noite</h2>
+		        <div class="costumer">
+		            <div class="costumer-description">
+		                <div class="circle-status @item.RetornaStatus()"></div>
+		                <h2>@item.Nome</h2> @*Aqui vai o nome do cliente*@
+		                <div class="white-circle"></div>
+		                <h2><span class="toPC" s>@item.HoraCorte()</span></h2> @*Aqui vai o horário marcado pelo cliente*@
+		                <div class="white-circle"></div>
+		                <h2>@item.RetornoIdade() Anos</h2> @*Aqui vai a idade do cliente, realizando o calculo pelo formulário informado*@
+		            </div>
+		            <div class="costumer-contact">
+		                <span class="material-symbols-outlined">
+		                    call
+		                </span>
+		                <p>(16) @item.Tel</p>
+		            </div>
+		        </div>
+		    </div>
+		}
+	}
 </div>
 
 <script src="~/scripts/_BarberControlIndex.js"></script>

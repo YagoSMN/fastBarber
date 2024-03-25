@@ -13,7 +13,6 @@
     };
 
     var DesmarcarCorte = function () {
-        debugger;
         var id = +$("#id-horariomarc").val();
         $.post(config.urls.desmarcarCorte, { id : id}).done(function () {
             iziToast.success({

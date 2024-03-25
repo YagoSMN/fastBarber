@@ -184,7 +184,7 @@
 
     function applyCpfMask(input) {
         // Remove non-digit characters
-        let cleanedValue = input.value.replace(/\D/g, '');
+        var cleanedValue = input.value.replace(/\D/g, '');
 
         // Apply the CPF mask
         if (cleanedValue.length > 3) {
@@ -201,7 +201,7 @@
     }
 
     function applyPhoneMask(input) {
-        let cleanedValue = input.value.replace(/\D/g, '');
+        var cleanedValue = input.value.replace(/\D/g, '');
 
         if (cleanedValue.length >= 10) {
             cleanedValue = `(${cleanedValue.substring(0, 2)}) ${cleanedValue.substring(2, 7)}-${cleanedValue.substring(7)}`;

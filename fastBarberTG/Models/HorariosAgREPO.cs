@@ -28,7 +28,7 @@ namespace fastBarberTG.Models
                         StatusCorte = int.Parse(reader["StatusCorte"].ToString()),
                         Cpf = reader["CPF"].ToString(),
                         Nome = reader["Nome"].ToString(),
-                        Sobrenome = reader["Sobrenome"].ToString(),
+                        Sobrenome = reader["SNome"].ToString(),
                         DataNasc = DateTime.Parse(reader["DataNasc"].ToString()),
                         Tel = reader["Tel"].ToString(),
                         Email = reader["Email"].ToString()

@@ -20,9 +20,7 @@
 
         var dia = dataAtual.getDate();
         var mes = dataAtual.getMonth() + 1;
-        var formatoMMDD = (mes < 10 ? '0' : '') + mes + '/' + (dia < 10 ? '0' : '') + dia;
-        var diaMes = formatoMMDD;
-        $("#DataDaSemana").text(diaMes);
+        $("#DataDaSemana").text((dia < 10 ? '0' : '') + dia + '/' + (mes < 10 ? '0' : '') + mes);
     }
 
 

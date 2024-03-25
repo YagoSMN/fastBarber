@@ -6,15 +6,6 @@ CREATE TABLE FB_Cliente (
 	DataNasc	Date NOT NULL,
 	Tel			NVARCHAR(11) NOT NULL,
 	Email		NVARCHAR(50),
-)
-
-CREATE TABLE FB_HorariosMarc (
-	Id				INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
-	Id_Cliente		INT FOREIGN KEY REFERENCES FB_Cliente(Id) NOT NULL,
-	StatusCorte		INT NOT NULL,
-	BarberId		INT FOREIGN KEY REFERENCES FB_Barber(Id) NOT NULL,
-	DataCorte		DATE NOT NULL,
-	TempoCorte		DATETIME 
 );
 
 CREATE TABLE FB_Barber(
@@ -22,4 +13,15 @@ CREATE TABLE FB_Barber(
 	Nome		NVARCHAR(20) NOT NULL,
 	Email		NVARCHAR(30) NOT NULL,
 	Senha		NVARCHAR(12) NOT NULL
-)
+);
+
+CREATE TABLE FB_HorariosMarc (
+	Id				INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	Id_Cliente		INT FOREIGN KEY REFERENCES FB_Cliente(Id) NOT NULL,
+	StatusCorte		INT NOT NULL,
+	BarberId		INT FOREIGN KEY REFERENCES FB_Barber(Id) NOT NULL,
+	DataCorte		DATETIME NOT NULL,
+	TempoCorte		TIME 
+);
+
+INSERT INTO FB_Barber(Nome, Email, Senha) VALUES ('yago', 'yagohenriquest@gmail.com', '123456789123');

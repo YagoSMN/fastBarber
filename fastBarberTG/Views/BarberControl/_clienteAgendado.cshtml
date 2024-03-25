@@ -1,0 +1,22 @@
+﻿@model fastBarberTG.Models.HorariosMarcadosModel
+@{
+    Layout = null;
+}
+
+<div class="costumer">
+    <div class="costumer-description">
+        <div class="circle-status @Model.RetornaStatus()"></div>
+        <h2>@Model.Nome @Model.Sobrenome.Substring(0, 1).</h2>
+        <div class="white-circle"></div>
+        <h2><span class="toPC" s>@Model.HoraCorte()</span></h2>
+        <div class="white-circle"></div>
+        <h2>@Model.RetornoIdade() Anos</h2>
+    </div>
+    <div class="costumer-contact">
+        <span class="material-symbols-outlined">
+            call
+        </span>
+        <p>@Model.Tel</p>
+    </div>
+</div>
+

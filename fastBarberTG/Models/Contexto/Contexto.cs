@@ -12,7 +12,7 @@ namespace fastBarberTG.Models
         private readonly SqlConnection connection;
         public Contexto()
         {
-            connection = new SqlConnection(@"Data Source=YagoSilva-SMN\SQLEXPRESS; Integrated Security=SSPI;Initial Catalog=Fastbarber");
+            connection = new SqlConnection(@"Data Source=M20\SQLEXPRESS; Integrated Security=SSPI;Initial Catalog=Fastbarber");
             connection.Open();
         }
         

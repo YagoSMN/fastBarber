@@ -25,7 +25,7 @@ namespace fastBarberTG.Models
                 var Nome = new SqlParameter("@Nome", SqlDbType.NVarChar, 20) { Value = costumer.Nome };
                 var SNome = new SqlParameter("@SNome", SqlDbType.NVarChar, 10) { Value = costumer.Sobrenome };
                 var DataNasc = new SqlParameter("@DataNasc", SqlDbType.Date) { Value = costumer.DataNasc };
-                var Tel = new SqlParameter("@Tel", SqlDbType.NVarChar, 11) { Value = costumer.Tel };
+                var Tel = new SqlParameter("@Tel", SqlDbType.NVarChar, 20) { Value = costumer.Tel };
                 var Email = new SqlParameter("@Email", SqlDbType.NVarChar, 50) { Value = costumer.Email };
 
                 var resultParameter = new SqlParameter("@Result", SqlDbType.NVarChar, 100);

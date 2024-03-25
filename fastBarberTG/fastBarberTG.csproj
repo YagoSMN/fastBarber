@@ -181,6 +181,7 @@
     <Content Include="Views\MarcarCorte\Index.cshtml" />
     <Content Include="Views\MarcarCorte\_listaCorteCliente.cshtml" />
     <Content Include="Views\MarcarCorte\_DontExistsClient.cshtml" />
+    <Content Include="Views\BarberControl\_clienteAgendado.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

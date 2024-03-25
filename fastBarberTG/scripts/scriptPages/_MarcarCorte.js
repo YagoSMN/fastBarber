@@ -96,7 +96,7 @@
             }
 
         }).fail(function (msg) {
-            alert("Erro na requisição!" + msg)
+            alert(msg.toString())
         })
     }
 

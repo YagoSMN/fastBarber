@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE [dbo].[FBSP_MostraHorariosMarc]
+ALTER PROCEDURE [dbo].[FBSP_MostraHorariosMarc]
 	AS
 	/*
 	Documentação
@@ -25,6 +25,7 @@ CREATE OR ALTER PROCEDURE [dbo].[FBSP_MostraHorariosMarc]
 				INNER JOIN [dbo].[FB_Cliente] c
 					ON c.Id = hm.Id_Cliente 
 			WHERE CAST(hm.DataCorte AS DATE) = @DataAtual -- Compara apenas o dia da data de corte
+			ORDER BY hm.DataCorte ASC
 	END
 
 CREATE PROCEDURE [dbo].[FBSP_AddOrDenyCostumer]
@@ -32,7 +33,7 @@ CREATE PROCEDURE [dbo].[FBSP_AddOrDenyCostumer]
 	@Nome	NVARCHAR(20),
 	@SNome	NVARCHAR(10),
 	@DataNasc	Date,
-	@Tel		NVARCHAR(11),
+	@Tel		NVARCHAR(20),
 	@Email		NVARCHAR(50),
 	@Result NVARCHAR(100) OUTPUT -- Added an OUTPUT parameter for result message
 

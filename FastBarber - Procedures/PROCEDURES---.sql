@@ -1,4 +1,4 @@
-ALTER PROCEDURE [dbo].[FBSP_MostraHorariosMarc]
+CREATE PROCEDURE [dbo].[FBSP_MostraHorariosMarc]
 	AS
 	/*
 	Documentação

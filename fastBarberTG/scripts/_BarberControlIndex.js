@@ -2,7 +2,8 @@
 
     var config = {
         urls: {
-            userSettings: ''
+            userSettings: '',
+            buscarCustumer: ''
         },
     };
 
@@ -23,12 +24,21 @@
         $("#DataDaSemana").text((dia < 10 ? '0' : '') + dia + '/' + (mes < 10 ? '0' : '') + mes);
     }
 
-
     $(document).ready(function () {
         obterDiaDaSemana();
     });
 
+    var acessarColaborador = function(id) {
+        $.get(config.urls.buscarCustumer, { id: id}).done(function(html) {
+            $("#main-page").hide("slow");
+            $("#request-div").show("slow").html(html);
+        }).fail(function(msg) {
+            iziToast.error(msg);
+        });
+    };
+
     return {
         init: init,
+        acessarColaborador: acessarColaborador
     };
 })();

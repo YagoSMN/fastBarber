@@ -169,10 +169,31 @@ BEGIN
     VALUES (@Id_Cliente, 2, 1, CONVERT(DATETIME, @DataCorte, 103));
 END;
 
+ALTER PROCEDURE [dbo].[FBSP_SelCliente]
+	@Id INT
+	AS
+	/*
+	Documentação
+	Objetivo..........: Buscar o cliente por id
+	Autor.............: SMN - Yago S.
+	Data..............: 16/05/2020
+	Ex................: EXEC [dbo].[FBSP_SelCliente] 1
+	*/
+	BEGIN 
+		SELECT TOP 1	hm.Id,
+						hm.Id_Cliente,
+						c.CPF,
+						c.Nome,
+						c.SNome,
+						c.Email,
+						c.DataNasc,
+						c.Tel,
+						hm.DataCorte,
+						hm.StatusCorte
+			FROM [dbo].[FB_HorariosMarc] hm
+				INNER JOIN [dbo].[FB_Cliente] c
+					ON c.Id = hm.Id_Cliente 
+			WHERE hm.Id_Cliente = @Id
+			ORDER BY hm.DataCorte DESC
 
-
-
-
-
-
-
+	END

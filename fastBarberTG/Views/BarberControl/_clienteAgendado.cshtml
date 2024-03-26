@@ -3,7 +3,7 @@
     Layout = null;
 }
 
-<div class="costumer" onclick="console.log(@Model.Id_Cliente)">
+<div class="costumer" onclick="BarberControl.acessarColaborador(@Model.Id_Cliente); return true">
     <div class="costumer-description">
         <div class="circle-status @Model.RetornaStatus()"></div>
         <h2>@Model.Nome @Model.Sobrenome.Substring(0, 1).</h2>

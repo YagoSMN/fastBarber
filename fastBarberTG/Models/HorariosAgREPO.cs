@@ -106,5 +106,25 @@ namespace fastBarberTG.Models
                 contexto.ExecutaProcedure("FBSP_MarcarHorario", Cpf, Data);
             }
         }
+
+        public HorariosMarcadosModel BuscaCostumer(int Id)
+        {
+            using (contexto = new Contexto())
+            {
+                var id = new SqlParameter("@Id", SqlDbType.Int) { Value = Id};
+                var reader = contexto.ExecutaProcedureComRetorno("FBSP_SelCliente", id);
+                var horarioMarcado = new HorariosMarcadosModel();
+                while (reader.Read())
+                {
+                    horarioMarcado.HorarioId = int.Parse(reader["Id"].ToString());
+                    horarioMarcado.Id_Cliente = int.Parse(reader["Id_Cliente"].ToString());
+                    horarioMarcado.StatusCorte = int.Parse(reader["StatusCorte"].ToString());
+                    horarioMarcado.BarberId = int.Parse(reader["BarberId"].ToString());
+                    horarioMarcado.DataCorte = DateTime.Parse(reader["DataCorte"].ToString());
+                    horarioMarcado.TempoCorte = reader["TempoCorte"].ToString();
+                }
+                return horarioMarcado;
+            }
+        }
     }
 }

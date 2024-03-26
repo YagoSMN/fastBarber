@@ -5,17 +5,17 @@
     ViewBag.Title = "Index";
 }
 
-<div class="marked-users">
-	<h1>Horários agendados</h1>
+<div id="main-page" class="marked-users">
+    <h1>Horários agendados</h1>
     
-	<div class="flex-control">
-		<div class="DateTimeNow">
-			<h2 id="NomeDiaSemana"></h2>
-			<div class="white-circle"></div>
-			<h2 class="toPC" id="DataDaSemana"></h2> 
-		</div>
-		<button class="btn-filter"><span class="material-symbols-outlined">filter_alt</span>Filtrar</button>
-	</div>
+    <div class="flex-control">
+        <div class="DateTimeNow">
+            <h2 id="NomeDiaSemana"></h2>
+            <div class="white-circle"></div>
+            <h2 class="toPC" id="DataDaSemana"></h2> 
+        </div>
+        <button class="btn-filter"><span class="material-symbols-outlined">filter_alt</span>Filtrar</button>
+    </div>
     <div class="time-costumers">
         <h2>Manhã</h2>
         @foreach (var cliente in Model.Where(x => x.RetornaHoraDiaInt() < 12))
@@ -38,12 +38,12 @@
         }
     </div>
 </div>
+<div id="request-div" style="display: none"></div>
 <script src="~/scripts/_BarberControlIndex.js"></script>
 <script>
-
     BarberControl.init({
         urls: {
-            
-        },
+            buscarCustumer: '@Url.Action("CostumerDetails", "BarberControl")',
+        }
     });
 </script>

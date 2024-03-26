@@ -14,7 +14,7 @@ namespace fastBarberTG.Models
         public DateTime DataCorte { get; set; }
         public int StatusCorte { get; set; }
         public int BarberId { get; set; }
-        public string TempoCorte { get; set; }
+        public DateTime TempoCorte { get; set; }
 
         public string RetornoIdade()
         {

@@ -1,4 +1,4 @@
-﻿@model fastBarberTG.Models.HorariosMarcadosModel
+﻿@model fastBarberTG.Models.dto.BuscaCustumer
 @{
     Layout = null;
     ViewBag.Title = "CostumerDetails";
@@ -7,26 +7,34 @@
 
 <div class="costumer-detail">
     <div class="details">
-        <div><span class="material-symbols-outlined">close</span></div>
+        <div onclick="window.location.reload();" style="cursor: pointer;"><span class="material-symbols-outlined">close</span></div>
         <div class="costumer-description">
-            <div class="circle-status red"></div>
-            <h2>@Model.Nome</h2> @*Aqui vai o nome do cliente*@
-            <img src="~/Content/Logo/circlepng.png"/>
-            <h2 class="toPurple">Model.HoraCorte()</h2> @*Aqui vai o horário marcado pelo cliente*@
-            <img src="~/Content/Logo/circlepng.png"/>
+            <div class="uk-flex uk-flex-middle uk-gap-small">
+                <img src="~/Content/Logo/circlepng.png" />
+                <h2>@Model.costumer.Nome</h2>
+            </div>
+            <div class="uk-flex uk-flex-middle uk-gap-small">
+                <div class="circle-status @Model.horario.RetornaStatus()"></div>
+                <h2>@Model.horario.HoraCorte()</h2>
+            </div>
         </div>
         <div class="sensitive-info">
-            <p>Data nascimento - <span>@Model.DataNasc</span></p>
-            <p>CPF - @Model.Cpf</p>
+            <p>Data nascimento - <span>@Model.costumer.DataNasc.ToShortDateString()</span></p>
+            <p>CPF - @Model.costumer.Cpf</p>
         </div>
-        <div class="button-haircut">
-            <button>START HAIRCUT</button>
-        </div>
-        <div class="elapsed-time">
-            <h3>Tempo decorrido</h3>
-            <img src="~/Content/Logo/circlepng.png"/>
-            <h3>00:00</h3>
-        </div>
+        @if (Model.horario.StatusCorte != 3)
+        {
+            <div class="button-haircut">
+                <button class="green">START HAIRCUT</button>
+                <button class="red">CANCEL HAIRCUT</button>
+            </div>
+            <div class="elapsed-time">
+                <h3>Tempo decorrido</h3>
+                <img src="~/Content/Logo/circlepng.png"/>
+                <h3>00:00</h3>
+            </div>
+        }
     </div>
 </div>
 <link href="~/Content/BarberControl/_BarberControlCostumerDetails.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/libcss.css" rel="stylesheet" type="text/css" />

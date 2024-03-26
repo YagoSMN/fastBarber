@@ -3,7 +3,7 @@
     var config = {
         urls: {
             userSettings: '',
-            buscarCustumer: ''
+            buscarColaborador: ''
         },
     };
 
@@ -28,8 +28,11 @@
         obterDiaDaSemana();
     });
 
-    var acessarColaborador = function(id) {
-        $.get(config.urls.buscarCustumer, { id: id}).done(function(html) {
+    var acessarColaborador = function (id) {
+        $.get(config.urls.buscarColaborador,
+        {
+            id: id 
+        }).done(function (html) {
             $("#main-page").hide("slow");
             $("#request-div").show("slow").html(html);
         }).fail(function(msg) {

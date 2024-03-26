@@ -5,14 +5,12 @@ using System.Web;
 
 namespace fastBarberTG.Models
 {
-    public class Costumer
+    public class Barber
     {
         public int Id { get; set; }
-        public decimal Cpf { get; set; }
         public string Nome { get; set; }
-        public string Sobrenome { get; set; }
-        public DateTime DataNasc { get; set; }
-        public string Tel { get; set; }
         public string Email { get; set; }
+        public string Senha { get; set; }
+        
     }
 }

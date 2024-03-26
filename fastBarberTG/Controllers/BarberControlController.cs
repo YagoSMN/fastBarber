@@ -17,9 +17,10 @@ namespace fastBarberTG.Controllers
             return View(repo.HorariosMarcados());
         }
 
+        [HttpGet]
         public ActionResult CostumerDetails(int id)
         {
-            return View(repo.BuscaCostumer(id));
+            return View("CostumerDetails", repo.BuscaCostumer(id));
         }
     }
 }

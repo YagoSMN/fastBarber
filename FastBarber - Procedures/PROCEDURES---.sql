@@ -177,7 +177,7 @@ ALTER PROCEDURE [dbo].[FBSP_SelCliente]
 	Objetivo..........: Buscar o cliente por id
 	Autor.............: SMN - Yago S.
 	Data..............: 16/05/2020
-	Ex................: EXEC [dbo].[FBSP_SelCliente] 1
+	Ex................: EXEC [dbo].[FBSP_SelCliente] 4
 	*/
 	BEGIN 
 		SELECT TOP 1	hm.Id,
@@ -185,14 +185,19 @@ ALTER PROCEDURE [dbo].[FBSP_SelCliente]
 						c.CPF,
 						c.Nome,
 						c.SNome,
+						hm.BarberId,
+						b.Nome AS BarberName,
 						c.Email,
 						c.DataNasc,
 						c.Tel,
 						hm.DataCorte,
-						hm.StatusCorte
+						hm.StatusCorte,
+						hm.TempoCorte
 			FROM [dbo].[FB_HorariosMarc] hm
 				INNER JOIN [dbo].[FB_Cliente] c
-					ON c.Id = hm.Id_Cliente 
+					ON c.Id = hm.Id_Cliente
+				INNER JOIN [dbo].[FB_Barber] b
+					ON hm.BarberId = b.Id
 			WHERE hm.Id_Cliente = @Id
 			ORDER BY hm.DataCorte DESC
 

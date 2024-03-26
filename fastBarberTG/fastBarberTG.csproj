@@ -121,6 +121,7 @@
     <Content Include="Content\BarberControl\_BarberControlIndex.css" />
     <Content Include="Content\iziToast.css" />
     <Content Include="Content\iziToast.min.css" />
+    <Content Include="Content\libcss.css" />
     <Content Include="Content\Logo\circlepng.png" />
     <Content Include="Content\Logo\LoginLogo.png" />
     <Content Include="Content\MarcaCorte\_listaCorteCliente.css" />
@@ -153,13 +154,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Barber.cs" />
     <Compile Include="Models\Contexto\Contexto.cs" />
     <Compile Include="Models\Costumer.cs" />
+    <Compile Include="Models\dto\BuscaCustumer.cs" />
     <Compile Include="Models\Geral.cs" />
-    <Compile Include="Models\HorariosAgREPO.cs" />
+    <Compile Include="Models\Repositories\HorariosAgREPO.cs" />
     <Compile Include="Models\HorariosMarcadosModel.cs" />
-    <Compile Include="Models\HorariosOcupados.cs" />
-    <Compile Include="Models\NewCostumerREPO.cs" />
+    <Compile Include="Models\dto\HorariosOcupados.cs" />
+    <Compile Include="Models\Repositories\NewCostumerREPO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using fastBarberTG.Models;
+using fastBarberTG.Models.dto;
 
 namespace fastBarberTG.Models
 {
@@ -26,7 +27,7 @@ namespace fastBarberTG.Models
                         Id_Cliente = int.Parse(reader["Id_Cliente"].ToString()),
                         DataCorte = DateTime.Parse(reader["DataCorte"].ToString()),
                         StatusCorte = int.Parse(reader["StatusCorte"].ToString()),
-                        Cpf = reader["CPF"].ToString(),
+                        Cpf = decimal.Parse(reader["CPF"].ToString()),
                         Nome = reader["Nome"].ToString(),
                         Sobrenome = reader["SNome"].ToString(),
                         DataNasc = DateTime.Parse(reader["DataNasc"].ToString()),
@@ -56,7 +57,7 @@ namespace fastBarberTG.Models
                         StatusCorte = int.Parse(reader["StatusCorte"].ToString()),
                         BarberId = int.Parse(reader["BarberId"].ToString()),
                         DataCorte = DateTime.Parse(reader["DataCorte"].ToString()),
-                        TempoCorte = reader["TempoCorte"].ToString()
+                        TempoCorte = TimeSpan.Parse(reader["TempoCorte"].ToString())
                     };
 
                     return obj;
@@ -107,22 +108,42 @@ namespace fastBarberTG.Models
             }
         }
 
-        public HorariosMarcadosModel BuscaCostumer(int Id)
+        public BuscaCustumer BuscaCostumer(int Id)
         {
             using (contexto = new Contexto())
             {
                 var id = new SqlParameter("@Id", SqlDbType.Int) { Value = Id};
                 var reader = contexto.ExecutaProcedureComRetorno("FBSP_SelCliente", id);
-                var horarioMarcado = new HorariosMarcadosModel();
+                var horarioMarcado = new BuscaCustumer();
                 while (reader.Read())
                 {
-                    horarioMarcado.HorarioId = int.Parse(reader["Id"].ToString());
-                    horarioMarcado.Id_Cliente = int.Parse(reader["Id_Cliente"].ToString());
-                    horarioMarcado.StatusCorte = int.Parse(reader["StatusCorte"].ToString());
-                    horarioMarcado.BarberId = int.Parse(reader["BarberId"].ToString());
-                    horarioMarcado.DataCorte = DateTime.Parse(reader["DataCorte"].ToString());
-                    horarioMarcado.TempoCorte = reader["TempoCorte"].ToString();
+                    horarioMarcado.horario = new HorariosMarcadosModel
+                    {
+                        HorarioId = int.Parse(reader["Id"].ToString()),
+                        Id_Cliente = int.Parse(reader["Id_Cliente"].ToString()),
+                        StatusCorte = int.Parse(reader["StatusCorte"].ToString()),
+                        BarberId = int.Parse(reader["BarberId"].ToString()),
+                        DataCorte = DateTime.Parse(reader["DataCorte"].ToString()),
+                        TempoCorte = DateTime.Parse(reader["TempoCorte"].ToString())
+                };
+
+                    horarioMarcado.costumer = new Costumer
+                    {
+                        Id = int.Parse(reader["Id_Cliente"].ToString()),
+                        Nome = reader["Nome"].ToString(),
+                        Cpf = decimal.Parse(reader["CPF"].ToString()),
+                        Sobrenome = reader["SNome"].ToString(),
+                        DataNasc = DateTime.Parse(reader["DataNasc"].ToString())
+                    };
+                    
+                    horarioMarcado.barber = new Barber
+                    {
+                        Id = int.Parse(reader["BarberId"].ToString()),
+                        Nome = reader["BarberName"].ToString()
+                    };
+                    
                 }
+
                 return horarioMarcado;
             }
         }

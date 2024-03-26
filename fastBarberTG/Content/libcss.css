@@ -1,0 +1,19 @@
+﻿.uk-flex {
+    display: flex;
+}
+
+.uk-flex-column {
+    flex-direction: column;
+}
+
+.uk-flex-center {
+    justify-content: center;
+}
+
+.uk-flex-middle {
+    align-items: center;
+}
+
+.uk-gap-small {
+    gap: 10px;
+}

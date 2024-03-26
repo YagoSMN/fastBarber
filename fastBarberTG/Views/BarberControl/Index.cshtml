@@ -2,12 +2,11 @@
 @using fastBarberTG.Models
 @{
 	<link href="~/Content/BarberControl/_BarberControlIndex.css" rel="stylesheet" type="text/css" />
-    ViewBag.Title = "Index";
+    ViewBag.Title = "BarberControl/FastBarber";
 }
 
 <div id="main-page" class="marked-users">
     <h1>Horários agendados</h1>
-    
     <div class="flex-control">
         <div class="DateTimeNow">
             <h2 id="NomeDiaSemana"></h2>
@@ -43,7 +42,8 @@
 <script>
     BarberControl.init({
         urls: {
-            buscarCustumer: '@Url.Action("CostumerDetails", "BarberControl")',
+            buscarColaborador: '@Url.Action("CostumerDetails")'
         }
-    });
+    })
 </script>
+

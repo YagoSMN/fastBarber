@@ -57,7 +57,7 @@ namespace fastBarberTG.Models
                         StatusCorte = int.Parse(reader["StatusCorte"].ToString()),
                         BarberId = int.Parse(reader["BarberId"].ToString()),
                         DataCorte = DateTime.Parse(reader["DataCorte"].ToString()),
-                        TempoCorte = TimeSpan.Parse(reader["TempoCorte"].ToString())
+                        TempoCorte = reader["TempoCorte"] != DBNull.Value ? DateTime.Parse(reader["TempoCorte"].ToString()) : DateTime.MinValue
                     };
 
                     return obj;
@@ -124,8 +124,8 @@ namespace fastBarberTG.Models
                         StatusCorte = int.Parse(reader["StatusCorte"].ToString()),
                         BarberId = int.Parse(reader["BarberId"].ToString()),
                         DataCorte = DateTime.Parse(reader["DataCorte"].ToString()),
-                        TempoCorte = DateTime.Parse(reader["TempoCorte"].ToString())
-                };
+                        TempoCorte = reader["TempoCorte"] != DBNull.Value ? DateTime.Parse(reader["TempoCorte"].ToString()) : DateTime.MinValue
+                    };
 
                     horarioMarcado.costumer = new Costumer
                     {
@@ -147,5 +147,6 @@ namespace fastBarberTG.Models
                 return horarioMarcado;
             }
         }
+
     }
 }

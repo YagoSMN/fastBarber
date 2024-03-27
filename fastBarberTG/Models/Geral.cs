@@ -28,6 +28,5 @@ namespace fastBarberTG.Models
         {
             return DataAtual.ToString("tt HH:mm");
         }
-
     }
-}
+} 

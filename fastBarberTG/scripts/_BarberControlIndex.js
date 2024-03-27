@@ -40,6 +40,21 @@
         });
     };
 
+    var DesmarcarCorte = function (id) {
+        $.post(config.urls.desmarcarCorte, { id: id }).done(function () {
+            iziToast.success({
+                color: 'blue',
+                title: 'Sucesso!',
+                message: 'corte desmarcado',
+            });
+        }).fail(function () {
+            iziToast.error({
+                title: 'Error',
+                message: "Erro na requisição",
+            });
+        });
+    }
+
     return {
         init: init,
         acessarColaborador: acessarColaborador

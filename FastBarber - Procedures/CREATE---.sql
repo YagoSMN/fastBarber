@@ -21,7 +21,7 @@ CREATE TABLE FB_HorariosMarc (
 	StatusCorte		INT NOT NULL,
 	BarberId		INT FOREIGN KEY REFERENCES FB_Barber(Id) NOT NULL,
 	DataCorte		DATETIME NOT NULL,
-	TempoCorte		DateTime
+	TempoCorte		NVARCHAR(8)
 );
 
 INSERT INTO FB_Barber(Nome, Email, Senha) VALUES ('yago', 'yagohenriquest@gmail.com', '123456789123');

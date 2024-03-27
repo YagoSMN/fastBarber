@@ -17,3 +17,7 @@
 .uk-gap-small {
     gap: 10px;
 }
+
+.uk-none {
+    display: none;
+}

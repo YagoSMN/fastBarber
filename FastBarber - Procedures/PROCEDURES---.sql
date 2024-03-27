@@ -180,6 +180,7 @@ ALTER PROCEDURE [dbo].[FBSP_SelCliente]
 	Ex................: EXEC [dbo].[FBSP_SelCliente] 4
 	*/
 	BEGIN 
+
 		SELECT TOP 1	hm.Id,
 						hm.Id_Cliente,
 						c.CPF,
@@ -193,12 +194,10 @@ ALTER PROCEDURE [dbo].[FBSP_SelCliente]
 						hm.DataCorte,
 						hm.StatusCorte,
 						hm.TempoCorte
-			FROM [dbo].[FB_HorariosMarc] hm
-				INNER JOIN [dbo].[FB_Cliente] c
-					ON c.Id = hm.Id_Cliente
-				INNER JOIN [dbo].[FB_Barber] b
-					ON hm.BarberId = b.Id
-			WHERE hm.Id_Cliente = @Id
-			ORDER BY hm.DataCorte DESC
+					FROM [dbo].[FB_HorariosMarc] hm
+					INNER JOIN [dbo].[FB_Cliente] c ON c.Id = hm.Id_Cliente
+					INNER JOIN [dbo].[FB_Barber] b ON hm.BarberId = b.Id
+					WHERE hm.Id = @Id 
+					ORDER BY hm.DataCorte ASC
 
 	END

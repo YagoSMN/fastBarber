@@ -5,7 +5,7 @@
 }
 
 
-<div class="costumer-detail">
+<div class="costumer-detail" data-statuscorte="@Model.horario.StatusCorte">
     <div class="details">
         <div onclick="window.location.reload();" style="cursor: pointer;"><span class="material-symbols-outlined">close</span></div>
         <div class="costumer-description">
@@ -14,7 +14,7 @@
                 <h2>@Model.costumer.Nome @Model.costumer.Sobrenome</h2>
             </div>
             <div class="uk-flex uk-flex-middle uk-gap-small">
-                <div class="circle-status @Model.horario.RetornaStatus()"></div>
+                <div id="status-corte"class="circle-status @Model.horario.RetornaStatus()"></div>
                 <h2>@Model.horario.HoraCorte()</h2>
             </div>
         </div>
@@ -22,18 +22,31 @@
             <p>Data nascimento - <span>@Model.costumer.DataNasc.ToShortDateString()</span></p>
             <p>CPF - @Model.costumer.Cpf</p>
         </div>
-        @if (Model.horario.StatusCorte != 3)
-        {
-            <div class="button-haircut">
-                <button class="green">START HAIRCUT</button>
-                <button class="red">CANCEL HAIRCUT</button>
+        @{
+            <div id="corte-concluido" class="uk-flex uk-flex-center uk-flex-middle @(Model.horario.StatusCorte != 1 ? "uk-none" : "")" style="height: 80%;">
+                 <h1 style="color: green;">CORTE CONCLUÍDO COM SUCESSO!</h1>
+            </div>
+            <div id="corte-cancelado" class="uk-flex uk-flex-center uk-flex-middle @(Model.horario.StatusCorte != 3 ? "uk-none" : "")" style="height: 80%;">
+                <h1 style="color: red;">CORTE CANCELADO!</h1>
+            </div>
+            <div id="timer-control" class="uk-flex uk-flex-center uk-flex-middle" style="display: none; height: 80%;">
+                <button class="btn-timer" onclick="BarberControl.finalizarCorte(@Model.horario.HorarioId)">FINALIZAR CORTE</button>
+            </div>
+            if (Model.horario.StatusCorte == 2)
+            {
+                <div id="buttons-control">
+                    <div class="button-haircut">
+                        <button class="green" onclick="BarberControl.iniciarContador()">START HAIRCUT</button>
+                        <button class="red" onclick="BarberControl.desmarcarCorte(@Model.horario.HorarioId)">CANCEL HAIRCUT</button>
+                    </div>
+                </div>
+            }
+            <div class="elapsed-time @(Model.horario.StatusCorte == 3 ? "uk-none" : "")">
+                <h3>Tempo decorrido</h3>
+                <img src="~/Content/Logo/circlepng.png" />
+                <h3 id="tempo-decorrido">@(!Model.horario.TempoCorte.Any() ? "00:00:00" : Model.horario.TempoCorte)</h3>
             </div>
         }
-        <div class="elapsed-time">
-            <h3>Tempo decorrido</h3>
-            <img src="~/Content/Logo/circlepng.png" />
-            <h3>@Model.horario.TempoCorte.TimeOfDay</h3>
-        </div>
     </div>
 </div>
 <link href="~/Content/BarberControl/_BarberControlCostumerDetails.css" rel="stylesheet" type="text/css" />

@@ -80,3 +80,13 @@
     align-items: center;
     gap: 10px;
 }
+
+.btn-timer {
+    padding: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    color: var(--white);
+    background: red;
+    margin-bottom: 20px;
+}

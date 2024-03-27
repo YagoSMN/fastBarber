@@ -22,5 +22,15 @@ namespace fastBarberTG.Controllers
         {
             return View("CostumerDetails", repo.BuscaCostumer(id));
         }
+
+        public void DesmarcarCorte(int Id)
+        {
+            repo.DesmarcarCorte(Id);
+        }
+
+        public void FinalizarCorte(int Id, string TempoCorte)
+        {
+            repo.finalizarCorte(Id, TempoCorte);
+        }
     }
 }

@@ -57,7 +57,7 @@ namespace fastBarberTG.Models
                         StatusCorte = int.Parse(reader["StatusCorte"].ToString()),
                         BarberId = int.Parse(reader["BarberId"].ToString()),
                         DataCorte = DateTime.Parse(reader["DataCorte"].ToString()),
-                        TempoCorte = reader["TempoCorte"] != DBNull.Value ? DateTime.Parse(reader["TempoCorte"].ToString()) : DateTime.MinValue
+                        TempoCorte = reader["TempoCorte"].ToString()
                     };
 
                     return obj;
@@ -124,7 +124,7 @@ namespace fastBarberTG.Models
                         StatusCorte = int.Parse(reader["StatusCorte"].ToString()),
                         BarberId = int.Parse(reader["BarberId"].ToString()),
                         DataCorte = DateTime.Parse(reader["DataCorte"].ToString()),
-                        TempoCorte = reader["TempoCorte"] != DBNull.Value ? DateTime.Parse(reader["TempoCorte"].ToString()) : DateTime.MinValue
+                        TempoCorte = reader["TempoCorte"].ToString()
                     };
 
                     horarioMarcado.costumer = new Costumer
@@ -145,6 +145,16 @@ namespace fastBarberTG.Models
                 }
 
                 return horarioMarcado;
+            }
+        }
+
+        public void finalizarCorte(int id, string TempoCorte)
+        {
+            using (contexto = new Contexto())
+            {
+                var Id = new SqlParameter("@Id", SqlDbType.Int) { Value = id };
+                var tempoCorte = new SqlParameter("@TempoCorte", SqlDbType.NVarChar, 8) { Value = TempoCorte };
+                contexto.ExecutaProcedure("FBSP_finalizarHorario", Id, tempoCorte);
             }
         }
 

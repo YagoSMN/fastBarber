@@ -4,7 +4,7 @@
 	ViewBag.Title = "Index";
 	<link href="~/Content/MarcaCorte/_MarcaCorteIndex.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/libcss.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/iziToast.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/iziToast.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -73,7 +73,14 @@
 
             </div>
             <div id="final-screen" style="display: none;" class="final-screen">
-                <h1>Horarário marcado!</h1>
+                <div class="uk-flex uk-flex-center uk-flex-middle uk-gap-small">
+                    <div class="bg-done">
+                        <span class="material-symbols-outlined">
+                            done
+                        </span>
+                    </div>
+                    <h1>Horário marcado!</h1>
+                </div>
                 <h1>Deseja marcar outro horário no sistema?</h1>
                 <button type="button" onclick="fastBarber.Retornar()">RETORNAR</button>
             </div>

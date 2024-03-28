@@ -234,7 +234,7 @@
     }
 
     var Retornar = function () {
-        $("#final-screen").hide();
+        $(".final-screen").hide();
         $("#Question").show();
     }
 

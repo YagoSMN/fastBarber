@@ -201,3 +201,19 @@ ALTER PROCEDURE [dbo].[FBSP_SelCliente]
 					ORDER BY hm.DataCorte ASC
 
 	END
+
+CREATE PROCEDURE [dbo].[FBSP_finalizarHorario]
+	@Id			INT,
+	@TempoCorte NVARCHAR(8)
+
+	AS
+	/*
+	Documentação
+	Objetivo..........: finalizar o corte como concluido.
+	Autor.............: SMN - Yago S.
+	Data..............: 16/05/2020
+	Ex................: EXEC [dbo].[FBSP_finalizarHorario] 4
+	*/
+	BEGIN 
+		UPDATE FB_HorariosMarc SET StatusCorte = 1, TempoCorte = @TempoCorte WHERE Id = @Id
+	END

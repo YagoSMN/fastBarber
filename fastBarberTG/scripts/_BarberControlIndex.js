@@ -37,6 +37,7 @@
         }).done(function (html) {
             $("#main-page").hide("slow");
             $("#request-div").show("slow").html(html);
+            verificaContador(id);
         }).fail(function(msg) {
             iziToast.error(msg);
         });
@@ -60,15 +61,40 @@
         });
     }
 
-    var iniciarContador = function() {
-        window.localStorage.setItem('contador', new Date());
-        var contador = 0;
+    function verificaContador(id) {
+        var model = JSON.parse(localStorage.getItem("contador"));
+
+        if (model !== null && model.Id === id) {
+            $("#buttons-control").hide();
+            $("#timer-control").show();
+            var HoraInicio = new Date(model.HoraInicio);
+            var HoraAtual = new Date();
+            var diferenca = Math.floor((HoraAtual.getTime() - HoraInicio.getTime()) / 1000);
+            contadorSetInterval = setInterval(function () {
+                diferenca++;
+                $("#tempo-decorrido").text(formatarTempo(diferenca));
+            },
+            1000);
+        }
+    }
+
+    var iniciarContador = function (id, nome, hora) {
+        var model = JSON.parse(localStorage.getItem("contador"));
+        if (model != null && model.Id != id) {
+            iziToast.error({
+                title: 'Error',
+                message: `Você já possui o corte de ${nome} no horário ${hora} Rodando!`
+            });
+            return;
+        }
+
+        localStorage.setItem('contador', JSON.stringify({ Id: id, HoraInicio: new Date() , Nome: nome, Horario: hora}));
         $("#buttons-control").hide("slow");
         $("#timer-control").show("slow");
+        contador = 0;
         contadorSetInterval = setInterval(function() {
             contador++;
             $("#tempo-decorrido").text(formatarTempo(contador));
-            localStorage.setItem('contador', contador);
         },
         1000);
     };

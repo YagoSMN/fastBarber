@@ -36,12 +36,12 @@
             {
                 <div id="buttons-control">
                     <div class="button-haircut">
-                        <button class="green" onclick="BarberControl.iniciarContador()">START HAIRCUT</button>
+                        <button class="green" onclick="BarberControl.iniciarContador(@Model.horario.HorarioId, '@Model.costumer.Nome', '@Model.horario.HoraCorte()')">START HAIRCUT</button>
                         <button class="red" onclick="BarberControl.desmarcarCorte(@Model.horario.HorarioId)">CANCEL HAIRCUT</button>
                     </div>
                 </div>
             }
-            <div class="elapsed-time @(Model.horario.StatusCorte == 3 ? "uk-none" : "")">
+            <div class="elapsed-time">
                 <h3>Tempo decorrido</h3>
                 <img src="~/Content/Logo/circlepng.png" />
                 <h3 id="tempo-decorrido">@(!Model.horario.TempoCorte.Any() ? "00:00:00" : Model.horario.TempoCorte)</h3>

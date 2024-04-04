@@ -14,34 +14,15 @@
             </a>
         </div>
         <h1 style="text-align: center">Horario de Funcionamento</h1>
-        <form class="time-control uk-flex uk-flex-column uk-flex-middle">
-            
-            <div class="week-buttons uk-flex uk-flex-center uk-gap-small">
-                <button onclick="User.addDay(this)" value="Segunda-feira">S</button>
-                <button onclick="User.addDay(this)" value="Terca-feira">T</button>
-                <button onclick="User.addDay(this)" value="Quarta-feira">Q</button>
-                <button onclick="User.addDay(this)" value="Quinta-feira">Q</button>
-                <button onclick="User.addDay(this)" value="Sexta-feira">S</button>
-                <button onclick="User.addDay(this)" value="Sabado">S</button>
-                <button onclick="User.addDay(this)" value="Domingo">D</button>
-            </div>
-            <div class="uk-flex uk-flex-column">
-                <label>Horario de Início</label>
-                <input type="time"/>
-            </div>
-            <div class="uk-flex uk-flex-column">
-                <label>Horario de Inicio Almoço</label>
-                <input type="time"/>
-            </div>
-            <div class="uk-flex uk-flex-column">
-                <label>Horario Final de Almoço</label>
-                <input type="time"/>
-            </div>
-            <div class="uk-flex uk-flex-column">
-                <label>Horario Final</label>
-                <input type="time"/>
-            </div>
-            <button type="submit" class="card logout">SALVAR</button>
-        </form>
+        <div class="week-buttons uk-flex uk-flex-center uk-gap-small">
+            <button onclick="User.addDay(this)" value="1">S</button>
+            <button onclick="User.addDay(this)" value="2">T</button>
+            <button onclick="User.addDay(this)" value="3">Q</button>
+            <button onclick="User.addDay(this)" value="4">Q</button>
+            <button onclick="User.addDay(this)" value="5">S</button>
+            <button onclick="User.addDay(this)" value="6">S</button>
+            <button onclick="User.addDay(this)" value="7">D</button>
+        </div>
+        <div id="form-week" class="uk-none"></div>
     </div>
 </div>

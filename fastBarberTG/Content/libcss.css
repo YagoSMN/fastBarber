@@ -21,3 +21,11 @@
 .uk-none {
     display: none;
 }
+
+.uk-flex-between {
+    justify-content: space-between;
+}
+
+.uk-flex-around {
+    justify-content: space-around;
+}

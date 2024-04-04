@@ -67,7 +67,7 @@ a {
 .time-control label {
     font-size: 20px
 }
-.time-control input {
+.time-control input[type="time"] {
     padding: 10px;
     width: 100%;
     display: flex;
@@ -78,6 +78,7 @@ a {
     font-size: 20px;
     border: 2px solid white;
     border-radius: 6px;
+    cursor: pointer;
 }
 
 input[type="time"]::-webkit-calendar-picker-indicator{
@@ -105,7 +106,7 @@ input[type="time"]::-webkit-calendar-picker-indicator{
     transition: 0.4s;
 }
 
-.checked {
+.week-buttons .checked {
     cursor: pointer;
     background: var(--primary-color);
     color: black;

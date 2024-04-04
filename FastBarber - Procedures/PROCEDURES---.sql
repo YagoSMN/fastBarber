@@ -217,3 +217,20 @@ CREATE PROCEDURE [dbo].[FBSP_finalizarHorario]
 	BEGIN 
 		UPDATE FB_HorariosMarc SET StatusCorte = 1, TempoCorte = @TempoCorte WHERE Id = @Id
 	END
+
+CREATE PROCEDURE [dbo].[FBSP_BuscaDiaSemana]
+	@Id			INT
+
+	AS
+	/*
+	Documentação
+	Objetivo..........: buscar info do dia da semana.
+	Autor.............: SMN - Yago S.
+	Data..............: 16/05/2020
+	Ex................: EXEC [dbo].[FBSP_BuscaDiaSemana] 2
+	*/
+	BEGIN 
+		SELECT *
+			FROM [dbo].[FB_HorarioFunc] hf
+			WHERE hf.Id = @Id
+	END

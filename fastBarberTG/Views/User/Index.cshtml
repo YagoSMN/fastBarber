@@ -1,4 +1,3 @@
-﻿@using System.Web.UI.WebControls
 
 @{
     ViewBag.Title = "Settings";
@@ -6,33 +5,28 @@
 	<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 }
 
-<div class="user-menu">
-    <div id="user-settings" class="user-settings">
-        <div class="closeSelection">
-            <a href="/BarberControl" style="color: white;">
-                <span id="CloseSettings" onclick="CloseSettings()" class="material-symbols-outlined">
-                    close
-                </span>
-            </a>
-        </div>
-        <button>ALTERAR SENHA</button>
-        <button>ALTERAR EMAIL</button>
-        <button onclick="user.showHorario()">HORÁRIO DE FUNCIONAMENTO</button>
-        <button>
-            <a href="/MarcarCorte">
-                MARCAR CORTES VIA LINK    
-            </a>
-        </button>
-        <button class="logout">SAIR</button>
-    </div>
-    <div id="user-requestdiv" class="uk-none"></div>
+<div id="user-menu" class="user-menu">
+	<div class="user-settings">
+		<div class="closeSelection">
+		    <a href="/BarberControl">
+		        <span class="material-symbols-outlined" style="color: white;">
+		            close
+		        </span>
+		    </a>
+		</div>
+		<a class="card" >Alterar Dados Pessoais</a>
+	    <a class="card" onclick="User.showHorarios()">Horario de Funcionamento</a>
+		<a class="card" href="/MarcarCorte">Marcar Cortes VIA LINK</a>
+		<button class="logout card">SAIR</button>
+	</div>
 </div>
+<div id="user-requestdiv" class="uk-none"></div>
 
 <script src="~/scripts/scriptPages/_User.js"></script>
 <script>
-    user.init({
+    User.init({
         urls: {
-            showHorario: '@Url.Action("Horario")',
+            showHorarios: '@Url.Action("Horarios")'
         }
     })
 

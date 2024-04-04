@@ -10,7 +10,9 @@
 }
 
 
-.user-settings button {
+.user-settings .card {
+    display: flex;
+    justify-content: center;
     padding: 20px;
     width: 300px;
     font-weight: bold;
@@ -19,10 +21,20 @@
     border: none;
     border-radius: 4px;
     margin: 10px 0;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.user-settings .card:hover {
+    opacity: 0.5;
+    transition: 0.5s;
+    cursor: pointer;
 }
 
 .user-menu {
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,4 +54,60 @@
 
 .closeSelection span {
     cursor: pointer;
+}
+
+.time-control {
+    margin-top: 10px;
+}
+
+.time-control div {
+    width: 100%;
+}
+
+.time-control label {
+    font-size: 20px
+}
+.time-control input {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    background: none;
+    color: white;
+    font-size: 20px;
+    border: 2px solid white;
+    border-radius: 6px;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator{
+    filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+}
+
+.week-buttons {
+    margin-bottom: 20px;
+}
+
+.week-buttons button{
+    font-size: 16px;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 2px;
+    background: none;
+    color: white;
+}
+
+.week-buttons button:hover {
+    cursor: pointer;
+    background: var(--primary-color);
+    color: black;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+.checked {
+    cursor: pointer;
+    background: var(--primary-color);
+    color: black;
+    font-weight: bold;
 }

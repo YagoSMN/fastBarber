@@ -1,8 +1,8 @@
-﻿window.user = (function () {
+﻿window.User = (function () {
 
     var config = {
         urls: {
-            showHorario: '',
+            showHorarios: ''
         },
     };
 
@@ -10,23 +10,27 @@
         config = $config;
     };
 
-    var showHorario = function() {
-        
-        $.get(config.urls.showHorario).done(function(html) {
+    var showHorarios = function() {
+        $.get(config.urls.showHorarios).done(function(html) {
             $("#user-requestdiv").show("slow").html(html);
-            $("#user-settings").hide("slow");
-            console.log(html)
+            $("#user-menu").hide("slow");
         }).fail(function(msg) {
             iziToast.error({
-                title: 'Erro!',
+                title: 'ERRO',
                 message: 'Erro na requisição',
             });
         });
     };
 
+    var addDay = function (el) {
+        event.preventDefault();
+        $(el).addClass("checked");
+    }
+
     return {
         init: init,
-        showHorario: showHorario
+        showHorarios: showHorarios,
+        addDay: addDay
     };
 })();
 

@@ -9,9 +9,8 @@ namespace fastBarberTG.Controllers
     public class UserController : Controller
     {
         // GET: User
-        public ActionResult Settings()
-        {
-            return View();
-        }
+        public ActionResult Index() => View();
+
+        public ActionResult Horarios() => View();
     }
 }

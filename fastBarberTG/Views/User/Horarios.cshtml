@@ -1,0 +1,47 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "Horarios";
+}
+
+<div class="user-menu">
+    <div class="user-settings uk-flex uk-flex-middle uk-flex-center">
+        <div class="closeSelection">
+            <a href="/User" style="color: white">
+                <span class="material-symbols-outlined">
+                    arrow_back
+                </span>
+            </a>
+        </div>
+        <h1 style="text-align: center">Horario de Funcionamento</h1>
+        <form class="time-control uk-flex uk-flex-column uk-flex-middle">
+            
+            <div class="week-buttons uk-flex uk-flex-center uk-gap-small">
+                <button onclick="User.addDay(this)" value="Segunda-feira">S</button>
+                <button onclick="User.addDay(this)" value="Terca-feira">T</button>
+                <button onclick="User.addDay(this)" value="Quarta-feira">Q</button>
+                <button onclick="User.addDay(this)" value="Quinta-feira">Q</button>
+                <button onclick="User.addDay(this)" value="Sexta-feira">S</button>
+                <button onclick="User.addDay(this)" value="Sabado">S</button>
+                <button onclick="User.addDay(this)" value="Domingo">D</button>
+            </div>
+            <div class="uk-flex uk-flex-column">
+                <label>Horario de Início</label>
+                <input type="time"/>
+            </div>
+            <div class="uk-flex uk-flex-column">
+                <label>Horario de Inicio Almoço</label>
+                <input type="time"/>
+            </div>
+            <div class="uk-flex uk-flex-column">
+                <label>Horario Final de Almoço</label>
+                <input type="time"/>
+            </div>
+            <div class="uk-flex uk-flex-column">
+                <label>Horario Final</label>
+                <input type="time"/>
+            </div>
+            <button type="submit" class="card logout">SALVAR</button>
+        </form>
+    </div>
+</div>

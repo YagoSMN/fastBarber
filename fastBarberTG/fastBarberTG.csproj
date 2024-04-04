@@ -142,6 +142,7 @@
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="scripts\scriptPages\_listaCorteCliente.js" />
     <Content Include="scripts\scriptPages\_MarcarCorte.js" />
+    <Content Include="scripts\scriptPages\_User.js" />
     <Content Include="scripts\_BarberControlIndex.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -180,11 +181,12 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\BarberControl\Index.cshtml" />
     <Content Include="Views\BarberControl\CostumerDetails.cshtml" />
-    <Content Include="Views\User\Settings.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\MarcarCorte\Index.cshtml" />
     <Content Include="Views\MarcarCorte\_listaCorteCliente.cshtml" />
     <Content Include="Views\MarcarCorte\_DontExistsClient.cshtml" />
     <Content Include="Views\BarberControl\_clienteAgendado.cshtml" />
+    <Content Include="Views\User\Horarios.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

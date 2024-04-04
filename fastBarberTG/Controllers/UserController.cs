@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using fastBarberTG.Models.dto;
 using fastBarberTG.Models.Repositories;
 
 namespace fastBarberTG.Controllers
@@ -18,6 +19,11 @@ namespace fastBarberTG.Controllers
         public ActionResult BuscarDiaSemana(int id)
         {
             return View("_formDiaSemana", diarepo.BuscaDiaSemana(id));
+        }
+
+        public void SalvarDiaSemana(DiaSemana model)
+        {
+            diarepo.SalvarDiaSemana(model);
         }
     }
 }

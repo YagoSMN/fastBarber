@@ -3,7 +3,8 @@
     var config = {
         urls: {
             showHorarios: '',
-            buscarDiaSemana: ''
+            buscarDiaSemana: '',
+            salvarDiaSemana: ''
         },
     };
 
@@ -30,7 +31,6 @@
         $(el).addClass("checked");
         $.get(config.urls.buscarDiaSemana, { Id: $(el).val() }).done(function (html) {
             $("#form-week").show("slow").html(html);
-            console.log(html);
         }).fail(function (msg) {
             $("#form-week").empty();
             iziToast.error({
@@ -39,10 +39,41 @@
             });
         });
     }
+
+    var salvarDiaSemana = function () {
+        event.preventDefault();
+        var model = {
+            Id: $("#form-salvardia").data("id"),
+            Horario_Inicio: $("#form-salvardia  input[name='HorarioInicio']").val(),
+            Horario_AlmocoInicio: $("#form-salvardia  input[name='HorarioInicioAlmoco']").val(),
+            Horario_AlmocoFim:  $("#form-salvardia  input[name='HorarioFimAlmoco']").val(),
+            Horario_Fim: $("#form-salvardia  input[name='HorarioFim']").val(),
+            Ind_Ativo: ($("#form-salvardia  input[name='Ind_Ativo']").prop("checked") ? 'S' : 'N'),
+        }
+
+        $.post(config.urls.salvarDiaSemana, model).done(function() {
+            iziToast.success({
+                title: "Sucesso!",
+                message: "ao salvar dia da semana"
+            });
+            $("#form-salvardia  input[name='HorarioInicio']").attr("disabled", true);
+            $("#form-salvardia  input[name='HorarioInicioAlmoco']").attr("disabled", true);
+            $("#form-salvardia  input[name='HorarioFimAlmoco']").attr("disabled", true);
+            $("#form-salvardia  input[name='HorarioFim']").attr("disabled", true);
+            $("#form-salvardia  input[name='Ind_Ativo']").attr("disabled", true);
+        }).fail(function(msg) {
+            iziToast.error({
+                title: 'ERRO',
+                message: 'Erro na requisição',
+            });
+        });
+    }
+
     return {
         init: init,
         showHorarios: showHorarios,
-        addDay: addDay
+        addDay: addDay,
+        salvarDiaSemana: salvarDiaSemana
     };
 })();
 

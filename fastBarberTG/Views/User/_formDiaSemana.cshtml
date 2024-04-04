@@ -4,32 +4,32 @@
     ViewBag.Title = "_formDiaSemana";
 }
 
-<form class="time-control uk-flex uk-flex-column uk-flex-middle">
+<form id="form-salvardia" class="time-control uk-flex uk-flex-column uk-flex-middle" onsubmit="User.salvarDiaSemana()" data-id="@Model.Id">
     <div class="uk-flex uk-flex-column">
         <label>Horario de Início</label>
-        <input type="time" value="@Model.Horario_Inicio"/>
+        <input type="time" name="HorarioInicio" value="@Model.Horario_Inicio"/>
     </div>
     <div class="uk-flex uk-flex-column">
         <label>Horario de Inicio Almoço</label>
-        <input type="time" value="@Model.Horario_AlmocoInicio"/>
+        <input type="time" name="HorarioInicioAlmoco" value="@Model.Horario_AlmocoInicio"/>
     </div>
     <div class="uk-flex uk-flex-column">
         <label>Horario Final de Almoço</label>
-        <input type="time" value="@Model.Horario_AlmocoFim"/>
+        <input type="time" name="HorarioFimAlmoco" value="@Model.Horario_AlmocoFim"/>
     </div>
     <div class="uk-flex uk-flex-column">
         <label>Horario Final</label>
-        <input type="time" value="@Model.Horario_Fim"/>
+        <input type="time" name="HorarioFim" value="@Model.Horario_Fim"/>
     </div>
     <div class="uk-flex uk-flex-between">
         <label style="font-size: 16px;">Dia de Funcionamento?</label>
         @if (Model.Ind_Ativo == 'S')
         {
-            <input type="checkbox" style="accent-color: #77F2DE;" checked/>
+            <input type="checkbox" name="Ind_Ativo" style="accent-color: #77F2DE;" checked/>
         }
         else
         {
-            <input type="checkbox" style="accent-color: #77F2DE;" />
+            <input type="checkbox" name="Ind_Ativo" style="accent-color: #77F2DE;" />
         }
     </div>
     <button type="submit" class="card logout" style="margin-top: 20px;">SALVAR</button>

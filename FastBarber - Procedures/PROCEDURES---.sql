@@ -234,3 +234,25 @@ CREATE PROCEDURE [dbo].[FBSP_BuscaDiaSemana]
 			FROM [dbo].[FB_HorarioFunc] hf
 			WHERE hf.Id = @Id
 	END
+
+CREATE PROCEDURE [dbo].[FBSP_SalvarDiaSemana]
+	@Id						INT,
+	@Horario_Ini			Time,
+	@Horario_AlmocoIni		Time,
+	@Horario_AlmocoFim		Time,
+	@Horario_Fim			Time,
+	@Ind_Ativo				char
+
+	AS
+	/*
+	Documentação
+	Objetivo..........: salvar o horário de funcionamento do dia da semana.
+	Autor.............: SMN - Yago S.
+	Data..............: 16/05/2020
+	Ex................: EXEC [dbo].[FBSP_SalvarDiaSemana] 2, '08:00:00', '12:00:00', '13:00:00', '21:00:00'
+	*/
+	BEGIN 
+		UPDATE [dbo].[FB_HorarioFunc]
+		SET Horario_Inicio = @Horario_Ini, Horario_AlmocoInicio = @Horario_AlmocoIni, Horario_AlmocoFim = @Horario_AlmocoFim, Horario_Fim = @Horario_Fim, Ind_Ativo = @Ind_Ativo
+			WHERE Id = @Id
+	END

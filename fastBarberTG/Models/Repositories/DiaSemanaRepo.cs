@@ -37,5 +37,19 @@ namespace fastBarberTG.Models.Repositories
                 return obj;
             }
         }
+
+        public void SalvarDiaSemana(DiaSemana model)
+        {
+            using (contexto = new Contexto())
+            {
+                var id = new SqlParameter("@Id", SqlDbType.Int) { Value = model.Id};
+                var horaIni = new SqlParameter("@Horario_Ini", SqlDbType.Time) {Value = model.Horario_Inicio};
+                var horaAlmocoIni = new SqlParameter("@Horario_AlmocoIni", SqlDbType.Time) { Value = model.Horario_AlmocoInicio };
+                var horaAlmocoFim = new SqlParameter("@Horario_AlmocoFim", SqlDbType.Time) { Value = model.Horario_AlmocoFim };
+                var horaFim = new SqlParameter("@Horario_Fim", SqlDbType.Time) { Value = model.Horario_Fim };
+                var ind_Ativo = new SqlParameter("@Ind_Ativo", SqlDbType.Char) { Value = model.Ind_Ativo};
+                contexto.ExecutaProcedure("FBSP_SalvarDiaSemana", id, horaIni, horaAlmocoIni, horaAlmocoFim, horaFim, ind_Ativo);
+            }
+        }
     }
 }

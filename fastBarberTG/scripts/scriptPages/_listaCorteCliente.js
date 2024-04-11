@@ -44,32 +44,12 @@
             $("[data-diaSemana]").removeClass("bg-highlight");
             $("#grid-horas").html(" ");
             $(a).addClass("bg-highlight");
-
-            var horasExistem = [];
-            console.log(response);
-            response.forEach(function (corte) {
-                var hora = corte.DataCorte.split(" ")[1];
-                var partesHora = hora.split(":");
-                var horaDecimal = parseInt(partesHora[0]) + (parseInt(partesHora[1]) / 60);
-                horasExistem.push(horaDecimal);
-            });
-
-            console.log(horasExistem);
-
-            var horasDesejadas = [8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 20, 20.5, 21];
-
-            var horasNaoMarcadas = horasDesejadas.filter(function (hora) {
-                var horaArredondada = Math.round(hora * 2) / 2;
-                return !horasExistem.includes(horaArredondada);
-            });
-
-            horasNaoMarcadas.forEach(function (hora) {
-                var div = `<div class="hora-marcada" onclick="Corte.AdicionarHora(this, '${$(a).attr('data-diaSemana').substr(0, 10)}', '${formatarHora(hora)}')"><p>${formatarHora(hora)}</p><div class="circle-green"></div></div>`;
-                $("#grid-horas").append(div);
-            });
-            $("#grid-horas").show("slow");
+            $("#grid-horas").html(response).show("slow");
         }).fail(function () {
-
+            iziToast.error({
+                title: 'Erro',
+                message: 'Ao buscar horários disponiveis!',
+            });
         });
     }
 
@@ -82,7 +62,7 @@
         }).fail(function(msg) {
             iziToast.error({
                 title: 'Erro',
-                message: 'Ao buscar horários disponiveis!',
+                message: 'Ao buscar os dias disponiveis!',
             });
         });
     }

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using fastBarberTG.Models;
 using System.Data.SqlClient;
+using fastBarberTG.Models.dto;
 using fastBarberTG.Models.Repositories;
 
 namespace fastBarberTG.Controllers
@@ -66,15 +67,19 @@ namespace fastBarberTG.Controllers
             _horariosAgREPO.DesmarcarCorte(id);
         }
 
-        public JsonResult BuscaOcupado(string data)
-        {
-            var lista = _horariosAgREPO.BuscaOcupado(data);
-            return Json(lista, JsonRequestBehavior.AllowGet); 
-        }
-
         public void MarcarHorario (decimal cpf, string data)
         {
             _horariosAgREPO.MarcarHorario(cpf, data);
+        }
+
+        public ActionResult HorariosDisponiveis(string data)
+        {
+            return View("_GridHorariosDisponiveis", new HorariosDisponiveis()
+            {
+                horariosOcupados = _horariosAgREPO.BuscaOcupado(data),
+                DayOfWeek = _dayOfWeekRepo.DaysOfWeek().FirstOrDefault(x => x.Id == (int)DateTime.Parse(data).DayOfWeek),
+                Data = DateTime.Parse(data)
+            });
         }
     }
 }

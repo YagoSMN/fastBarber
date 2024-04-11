@@ -1,0 +1,57 @@
+﻿@using System.Activities.Statements
+@model fastBarberTG.Models.dto.HorariosDisponiveis
+@{
+    Layout = null;
+    DateTime horarioInicio = DateTime.Parse($"{@Model.Data.Date.ToString().Substring(0, 10)} {@Model.DayOfWeek.Horario_Inicio.ToString().Substring(0, 5)}");
+    DateTime horarioAlmocoInicio = DateTime.Parse($"{@Model.Data.Date.ToString().Substring(0, 10)} {@Model.DayOfWeek.Horario_AlmocoInicio.ToString().Substring(0, 5)}");
+    DateTime horarioAlmocoFim = DateTime.Parse($"{@Model.Data.Date.ToString().Substring(0, 10)} {@Model.DayOfWeek.Horario_AlmocoFim.ToString().Substring(0, 5)}");
+    DateTime horarioFim = DateTime.Parse($"{@Model.Data.Date.ToString().Substring(0, 10)} {@Model.DayOfWeek.Horario_Fim.ToString().Substring(0, 5)}");
+    DateTime horaAtual = DateTime.Now;
+
+    // Arredondar para a meia hora mais próxima
+    TimeSpan horarioAtual = new TimeSpan(horaAtual.Hour, horaAtual.Minute, 0);
+    if (horaAtual.Minute >= 30)
+    {
+        horarioAtual = horarioAtual.Add(TimeSpan.FromMinutes(30));
+    }
+
+    TimeSpan intervalo = TimeSpan.FromMinutes(30); // Intervalo de 30 minutos
+}
+
+@while (horarioAtual <= horarioFim)
+{
+    // Verifica se o horário está dentro do período de almoço
+    if (horarioInicio >= horarioAlmocoInicio && horarioInicio < horarioAlmocoFim)
+    {
+        // Se estiver, pula o período de almoço
+        horarioAtual = horarioAlmocoFim;
+    }
+    else
+    {
+        // Verifica se o horário está ocupado
+        bool ocupado = VerificarHorarioOcupado(horarioAtual);
+
+        // Se não estiver ocupado, adiciona a div
+        if (!ocupado)
+        {
+        <div class="hora-marcada" onclick="Corte.AdicionarHora(this, '@Model.Data.Date.ToString().Substring(0, 10)', '@horarioAtual.ToString().Substring(0, 5)')">
+            <p>@horarioAtual.ToString().Substring(0, 5)</p>
+            <div class="circle-green"></div>
+        </div>
+        }
+
+        // Incrementa o horário
+        horarioAtual = horarioAtual.Add(intervalo);
+    }
+}
+
+@functions
+{
+    bool VerificarHorarioOcupado(DateTime inicio)
+    {
+        if (Model.horariosOcupados.Any(x => x.DataCorte.TimeOfDay == inicio))
+            return true;
+
+        return false;
+    }
+}

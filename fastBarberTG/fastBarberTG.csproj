@@ -162,6 +162,7 @@
     <Compile Include="Models\DayOfWeek.cs" />
     <Compile Include="Models\dto\BuscaCustumer.cs" />
     <Compile Include="Models\dto\DiaSemana.cs" />
+    <Compile Include="Models\dto\HorariosDisponiveis.cs" />
     <Compile Include="Models\Geral.cs" />
     <Compile Include="Models\Repositories\BarberREPO.cs" />
     <Compile Include="Models\Repositories\DayOfWeekREPO.cs" />
@@ -195,6 +196,7 @@
     <Content Include="Views\User\Horarios.cshtml" />
     <Content Include="Views\User\_formDiaSemana.cshtml" />
     <Content Include="Views\MarcarCorte\_GridCalendario.cshtml" />
+    <Content Include="Views\MarcarCorte\_GridHorariosDisponiveis.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

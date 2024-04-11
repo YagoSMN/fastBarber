@@ -7,7 +7,7 @@ namespace fastBarberTG.Models
 {
     public class HorariosOcupados
     {
-        public int Id {get; set;}
-        public string DataCorte { get; set; }
+        public int Id {get; set; }
+        public DateTime DataCorte { get; set; }
     }
 }

@@ -90,7 +90,7 @@ namespace fastBarberTG.Models
                     var obj = new HorariosOcupados()
                     {
                         Id = int.Parse(reader["Id"].ToString()),
-                        DataCorte = (reader["DataCorte"].ToString())
+                        DataCorte = DateTime.Parse(reader["DataCorte"].ToString())
                     };
                     listObj.Add(obj);
                 }

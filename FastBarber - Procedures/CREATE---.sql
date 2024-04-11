@@ -35,10 +35,10 @@ CREATE TABLE FB_HorarioFunc(
 )
 
 INSERT INTO FB_Barber(Nome, Email, Senha) VALUES ('yago', 'yagohenriquest@gmail.com', '123456789123');
-INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (1, 'Segunda-Feira', '00:00:00', '00:00:00','00:00:00','00:00:00', 'S')
-INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (2, 'Terça-Feira', '00:00:00', '00:00:00','00:00:00','00:00:00', 'S')
-INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (3, 'Quarta-Feira', '00:00:00', '00:00:00','00:00:00','00:00:00', 'S')
-INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (4, 'Quinta-Feira', '00:00:00', '00:00:00','00:00:00','00:00:00', 'S')
-INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (5, 'Sexta-Feira', '00:00:00', '00:00:00','00:00:00','00:00:00', 'S')
-INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (6, 'Sábado', '00:00:00', '00:00:00','00:00:00','00:00:00', 'S')
-INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (0, 'Domingo', '01:00:00', '00:00:00','00:00:00','00:00:00', 'S')
+INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (1, 'Segunda-Feira', '08:00:00', '13:00:00','14:30:00','21:30:00', 'S')
+INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (2, 'Terça-Feira', '08:00:00', '13:00:00','14:30:00','21:30:00', 'S')
+INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (3, 'Quarta-Feira', '08:00:00', '13:00:00','14:30:00','21:30:00', 'S')
+INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (4, 'Quinta-Feira', '08:00:00', '13:00:00','14:30:00','21:30:00', 'S')
+INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (5, 'Sexta-Feira', '08:00:00', '13:00:00','14:30:00','21:30:00', 'S')
+INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (6, 'Sábado', '08:00:00', '13:00:00','14:30:00','21:30:00', 'S')
+INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (0, 'Domingo', '08:00:00', '13:00:00','14:30:00','21:30:00', 'S')

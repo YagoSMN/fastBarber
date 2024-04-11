@@ -141,6 +141,7 @@
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="scripts\scriptPages\_listaCorteCliente.js" />
+    <Content Include="scripts\scriptPages\_login.js" />
     <Content Include="scripts\scriptPages\_MarcarCorte.js" />
     <Content Include="scripts\scriptPages\_User.js" />
     <Content Include="scripts\_BarberControlIndex.js" />
@@ -161,6 +162,7 @@
     <Compile Include="Models\dto\BuscaCustumer.cs" />
     <Compile Include="Models\dto\DiaSemana.cs" />
     <Compile Include="Models\Geral.cs" />
+    <Compile Include="Models\Repositories\BarberREPO.cs" />
     <Compile Include="Models\Repositories\DiaSemanaRepo.cs" />
     <Compile Include="Models\Repositories\HorariosAgREPO.cs" />
     <Compile Include="Models\HorariosMarcadosModel.cs" />

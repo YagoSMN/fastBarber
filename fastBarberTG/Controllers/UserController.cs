@@ -12,15 +12,19 @@ namespace fastBarberTG.Controllers
     {
         private DiaSemanaRepo diarepo = new DiaSemanaRepo();
         // GET: User
+        [Authorize]
         public ActionResult Index() => View();
 
+        [Authorize]
         public ActionResult Horarios() => View();
 
+        [Authorize]
         public ActionResult BuscarDiaSemana(int id)
         {
             return View("_formDiaSemana", diarepo.BuscaDiaSemana(id));
         }
 
+        [Authorize]
         public void SalvarDiaSemana(DiaSemana model)
         {
             diarepo.SalvarDiaSemana(model);

@@ -71,14 +71,13 @@ BEGIN
 
     DECLARE @DataCorte DATE;
 
-    -- Converter a string de data para o tipo DATE
     SET @DataCorte = CONVERT(DATE, @DataMarcacao, 103);
 
     -- Selecionar os cortes marcados na data fornecida
     SELECT	hm.Id,
 			hm.DataCorte
-    FROM [dbo].[FB_HorariosMarc] hm -- Substitua pelo nome real da sua tabela de cortes
-    WHERE CONVERT(DATE, DataCorte, 103) = @DataCorte AND StatusCorte IN (2);
+		FROM [dbo].[FB_HorariosMarc] hm
+		WHERE CONVERT(DATE, DataCorte, 103) = @DataCorte AND StatusCorte IN (2);
 END;
 
 CREATE PROCEDURE [dbo].[FBSP_BuscarCorteCliente]
@@ -255,4 +254,39 @@ CREATE PROCEDURE [dbo].[FBSP_SalvarDiaSemana]
 		UPDATE [dbo].[FB_HorarioFunc]
 		SET Horario_Inicio = @Horario_Ini, Horario_AlmocoInicio = @Horario_AlmocoIni, Horario_AlmocoFim = @Horario_AlmocoFim, Horario_Fim = @Horario_Fim, Ind_Ativo = @Ind_Ativo
 			WHERE Id = @Id
+	END
+
+CREATE PROCEDURE [dbo].[FBSP_LoginUsuario]
+	@Email		VARCHAR(50),
+	@Senha		VARCHAR(50)
+
+	AS
+	/*
+	Documentação
+	Objetivo..........: buscar o usuário de login e autoriza-lo
+	Autor.............: SMN - Yago S.
+	Data..............: 16/05/2020
+	Ex................: EXEC [dbo].[FBSP_LoginUsuario] 'yagohenrique@gmail.com' , '123456789123'
+	*/
+	BEGIN 
+		SELECT	*
+			FROM FB_Barber 
+			WHERE Email = @Email AND Senha = @Senha
+
+	END
+
+CREATE PROCEDURE [dbo].[FBSP_BuscaHorarioFunc]
+
+	AS
+	/*
+	Documentação
+	Objetivo..........: buscar todos os horários de funcionamento
+	Autor.............: SMN - Yago S.
+	Data..............: 16/05/2020
+	Ex................: EXEC [dbo].[FBSP_BuscaHorarioFunc] 
+	*/
+	BEGIN 
+		SELECT	*
+			FROM FB_HorarioFunc
+
 	END

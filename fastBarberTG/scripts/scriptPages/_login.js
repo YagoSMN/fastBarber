@@ -18,7 +18,7 @@
            email: $("#username").val(),
            senha: $("#userpassword").val()
        }).done(function (msg) {
-           window.location.href = "/BarberControl"
+           window.location.href = "/BarberControl";
        }).fail(function(msg) {
            iziToast.error({
                title: 'Error',

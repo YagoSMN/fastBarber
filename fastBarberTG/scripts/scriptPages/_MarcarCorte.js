@@ -109,7 +109,7 @@
                 title: 'CPF inválido',
                 message: 'Insira um CPF válido',
             });
-            return
+            return;
         }
 
         var model = {
@@ -127,7 +127,6 @@
             $("#response").html(html);
             $("#search-cpfcliente").val(cpf);
             $("#response").show("slow");
-
         }).fail(function (msg) {
             alert("Erro na requisição!");
         })

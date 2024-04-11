@@ -1,0 +1,29 @@
+﻿@model  IEnumerable<fastBarberTG.Models.DayOfWeek>
+@{
+    Layout = null;
+}
+
+@{
+    // Função para obter as próximas 7 datas
+    Func<List<DateTime>> getNextSevenDays = () =>
+    {
+        List<DateTime> dates = new List<DateTime>();
+        DateTime currentDate = DateTime.Now;
+
+        for (int i = 0; i < 7; i++)
+        {
+            dates.Add(currentDate.AddDays(i));
+        }
+
+        return dates;
+    };
+}
+
+@foreach (DateTime date in getNextSevenDays())
+{
+    var disabled = (Model.FirstOrDefault(x => x.Id == (int) date.DayOfWeek)?.Ind_Ativo == 'N') ? "disabled" : string.Empty;
+    <div>
+        <label>@date.ToString("dddd").ToUpper().Substring(0, 3)</label>
+        <input type="button" class="searchHorario" data-diaSemana="@date.ToString().Substring(0, 10)" value="@date.Day" onclick="Corte.BuscaOcupado(this)" @disabled/>
+    </div>             
+}

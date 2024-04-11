@@ -16,24 +16,10 @@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/scripts/iziToast.min.js" type="text/javascript"></script>
     <script src="~/scripts/iziToast.js" type="text/javascript"></script>
+    <link href="~/Content/libcss.css" rel="stylesheet" type="text/css" />
 }
 
-@{
-    // Função para obter as próximas 7 datas
-    Func<List<DateTime>> getNextSevenDays = () =>
-    {
-        List<DateTime> dates = new List<DateTime>();
-        DateTime currentDate = DateTime.Now;
 
-        for (int i = 0; i < 7; i++)
-        {
-            dates.Add(currentDate.AddDays(i));
-        }
-
-        return dates;
-    };
-}
-  
 @if (Model != null)
 {
     <div class="card">
@@ -55,26 +41,22 @@ else
             <p>Não encontramos nenhum horário marcado</p>
         </div>
         <div class="text-label">
-            <p>Deseja agendar em qual horário?</p>
+            <p>Deseja agendar um horário?</p>
         </div>
 
-        <div class="fastbarber-calendar">
+        <div class="fastbarber-calendar uk-none uk-flex uk-flex-column uk-flex-middle" >
             <input type="hidden" id="addhora-corte" />
-            <div class="flex-btn-days">
-                @foreach (DateTime date in getNextSevenDays())
-                {
-                    <div>
-                        <label>@date.ToString("dddd").ToUpper().Substring(0, 3)</label>
-                        <input type="button" class="searchHorario" data-diaSemana="@date" value="@date.Day" onclick="Corte.BuscaOcupado(this)" />
-                    </div>
-                }
+            <div class="flex-btn-days" id="grid-calendario">
             </div>
             <div id="grid-horas" style="display: none;" class="grid-horas">
                 <div class="hora-marcada">
                 </div>
             </div>
         </div>
-        <div class="marcar-button-div">
+        <div id="buscar-horarios" class="marcar-button-div uk-flex uk-flex-center">
+            <button class="marcar-button" type="button" onclick="Corte.buscarCalendario()">HORÁRIOS</button>
+        </div>
+        <div id="marcar-horarios" class="marcar-button-div uk-none uk-flex uk-flex-center">
             <button class="marcar-button" type="button" onclick="Corte.MarcarHorario()">MARCAR HORÁRIO</button>
         </div>
     </div>
@@ -86,7 +68,8 @@ else
         urls: {
             desmarcarCorte: '@Url.Action("DesmarcarCorte")',
             BuscaOcupado: '@Url.Action("BuscaOcupado")',
-            MarcarHorario: '@Url.Action("MarcarHorario")'
+            MarcarHorario: '@Url.Action("MarcarHorario")',
+            buscarCalendario: '@Url.Action("GridCalendario")'
         }
     })
 </script>

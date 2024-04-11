@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using fastBarberTG.Models;
 using System.Data.SqlClient;
+using fastBarberTG.Models.Repositories;
 
 namespace fastBarberTG.Controllers
 {
@@ -12,10 +13,12 @@ namespace fastBarberTG.Controllers
     {
         private NewCostumerREPO _newCostumerREPO;
         private HorariosAgREPO _horariosAgREPO;
+        private DayOfWeekREPO _dayOfWeekRepo;
         public MarcarCorteController()
         {
             _newCostumerREPO = new NewCostumerREPO();
             _horariosAgREPO = new HorariosAgREPO();
+            _dayOfWeekRepo = new DayOfWeekREPO();
         }
 
         public ActionResult Index()
@@ -33,6 +36,11 @@ namespace fastBarberTG.Controllers
             {
                 return ex.Message.ToString();
             }
+        }
+
+        public ActionResult GridCalendario()
+        {
+            return View("_GridCalendario", _dayOfWeekRepo.DaysOfWeek());
         }
 
         public int ExistsCostumer(Costumer costumer)

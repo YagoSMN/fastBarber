@@ -159,10 +159,12 @@
     <Compile Include="Models\Barber.cs" />
     <Compile Include="Models\Contexto\Contexto.cs" />
     <Compile Include="Models\Costumer.cs" />
+    <Compile Include="Models\DayOfWeek.cs" />
     <Compile Include="Models\dto\BuscaCustumer.cs" />
     <Compile Include="Models\dto\DiaSemana.cs" />
     <Compile Include="Models\Geral.cs" />
     <Compile Include="Models\Repositories\BarberREPO.cs" />
+    <Compile Include="Models\Repositories\DayOfWeekREPO.cs" />
     <Compile Include="Models\Repositories\DiaSemanaRepo.cs" />
     <Compile Include="Models\Repositories\HorariosAgREPO.cs" />
     <Compile Include="Models\HorariosMarcadosModel.cs" />
@@ -192,6 +194,7 @@
     <Content Include="Views\BarberControl\_clienteAgendado.cshtml" />
     <Content Include="Views\User\Horarios.cshtml" />
     <Content Include="Views\User\_formDiaSemana.cshtml" />
+    <Content Include="Views\MarcarCorte\_GridCalendario.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

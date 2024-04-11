@@ -4,7 +4,8 @@
         urls: {
             desmarcarCorte: '',
             BuscaOcupado: '',
-            MarcarHorario: ''
+            MarcarHorario: '',
+            buscarCalendario: ''
         },
     };
 
@@ -45,7 +46,7 @@
             $(a).addClass("bg-highlight");
 
             var horasExistem = [];
-
+            console.log(response);
             response.forEach(function (corte) {
                 var hora = corte.DataCorte.split(" ")[1];
                 var partesHora = hora.split(":");
@@ -72,6 +73,20 @@
         });
     }
 
+    var buscarCalendario = function() {
+        $.get(config.urls.buscarCalendario).done(function(html) {
+            $(".fastbarber-calendar").show("slow");
+            $("#grid-calendario").html(html);
+            $("#marcar-horarios").removeClass("uk-none");
+            $("#buscar-horarios").hide("");
+        }).fail(function(msg) {
+            iziToast.error({
+                title: 'Erro',
+                message: 'Ao buscar horários disponiveis!',
+            });
+        });
+    }
+
     function formatarHora(hora) {
         var horasInteiras = Math.floor(hora);
         var minutos = hora % 1 === 0.5 ? "30" : "00";
@@ -89,6 +104,15 @@
     var MarcarHorario = function () {
         var data = $("#addhora-corte").val();
         var cpf = $("#search-cpfcliente").val();
+
+        if (!data) {
+            iziToast.error({
+                title: 'Erro',
+                message: 'Você precisa selecionar um horário!',
+            });
+
+            return;
+        }
 
         $.post(config.urls.MarcarHorario, { cpf: cpf, data: data }).done(function () {
             $("#final-screen").show("slow");
@@ -112,7 +136,8 @@
         Nofunction: Nofunction,
         BuscaOcupado: BuscaOcupado,
         AdicionarHora: AdicionarHora,
-        MarcarHorario: MarcarHorario
+        MarcarHorario: MarcarHorario,
+        buscarCalendario: buscarCalendario
     };
 })();
 

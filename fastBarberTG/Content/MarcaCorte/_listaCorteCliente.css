@@ -98,6 +98,7 @@ span {
 }
 
 .grid-horas {
+    margin: 20px auto;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -171,3 +172,6 @@ span {
    
 }
 
+#grid-calendario div input:disabled {
+    opacity: 0.5;
+}

@@ -126,7 +126,7 @@ AS
     Ex................: EXEC [dbo].[FBSP_ExistsCostumer] 20
     */
 BEGIN
-    UPDATE FB_HorariosMarc SET StatusCorte = 3 WHERE Id = @Id;
+    UPDATE FB_HorariosMarc SET StatusCorte = 3, DatCancelamento = GETDATE() WHERE Id = @Id;
 END;
 
 CREATE PROCEDURE [dbo].[FBSP_ExistsCostumer]
@@ -168,7 +168,7 @@ BEGIN
     VALUES (@Id_Cliente, 2, 1, CONVERT(DATETIME, @DataCorte, 103));
 END;
 
-ALTER PROCEDURE [dbo].[FBSP_SelCliente]
+CREATE PROCEDURE [dbo].[FBSP_SelCliente]
 	@Id INT
 	AS
 	/*
@@ -214,7 +214,7 @@ CREATE PROCEDURE [dbo].[FBSP_finalizarHorario]
 	Ex................: EXEC [dbo].[FBSP_finalizarHorario] 4
 	*/
 	BEGIN 
-		UPDATE FB_HorariosMarc SET StatusCorte = 1, TempoCorte = @TempoCorte WHERE Id = @Id
+		UPDATE FB_HorariosMarc SET StatusCorte = 1, TempoCorte = @TempoCorte, DatFinalizado = GETDATE() WHERE Id = @Id
 	END
 
 CREATE PROCEDURE [dbo].[FBSP_BuscaDiaSemana]

@@ -2,26 +2,36 @@
 @model fastBarberTG.Models.dto.HorariosDisponiveis
 @{
     Layout = null;
-    DateTime horarioInicio = DateTime.Parse($"{@Model.Data.Date.ToString().Substring(0, 10)} {@Model.DayOfWeek.Horario_Inicio.ToString().Substring(0, 5)}");
-    DateTime horarioAlmocoInicio = DateTime.Parse($"{@Model.Data.Date.ToString().Substring(0, 10)} {@Model.DayOfWeek.Horario_AlmocoInicio.ToString().Substring(0, 5)}");
-    DateTime horarioAlmocoFim = DateTime.Parse($"{@Model.Data.Date.ToString().Substring(0, 10)} {@Model.DayOfWeek.Horario_AlmocoFim.ToString().Substring(0, 5)}");
-    DateTime horarioFim = DateTime.Parse($"{@Model.Data.Date.ToString().Substring(0, 10)} {@Model.DayOfWeek.Horario_Fim.ToString().Substring(0, 5)}");
-    DateTime horaAtual = DateTime.Now;
+    DateTime data = Model.Data.Date;
+    DateTime horarioInicio = new DateTime(data.Year, data.Month, data.Day, Model.DayOfWeek.Horario_Inicio.Hours, Model.DayOfWeek.Horario_Inicio.Minutes, 0);
+    DateTime horarioAlmocoInicio = new DateTime(data.Year, data.Month, data.Day, Model.DayOfWeek.Horario_AlmocoInicio.Hours, Model.DayOfWeek.Horario_AlmocoInicio.Minutes, 0);
+    DateTime horarioAlmocoFim = new DateTime(data.Year, data.Month, data.Day, Model.DayOfWeek.Horario_AlmocoFim.Hours, Model.DayOfWeek.Horario_AlmocoFim.Minutes, 0);
+    DateTime horarioFim = new DateTime(data.Year, data.Month, data.Day, Model.DayOfWeek.Horario_Fim.Hours, Model.DayOfWeek.Horario_Fim.Minutes, 0);
+    DateTime horarioAtual = DateTime.Now;
 
-    // Arredondar para a meia hora mais próxima
-    TimeSpan horarioAtual = new TimeSpan(horaAtual.Hour, horaAtual.Minute, 0);
-    if (horaAtual.Minute >= 30)
+    // Se o dia for diferente do dia atual, ajusta o horário de início para o início do dia
+    if (horarioInicio.Date != DateTime.Today)
     {
-        horarioAtual = horarioAtual.Add(TimeSpan.FromMinutes(30));
+        horarioAtual = new DateTime(horarioInicio.Year, horarioInicio.Month, horarioInicio.Day, horarioInicio.Hour, horarioInicio.Minute, 0);
     }
-
-    TimeSpan intervalo = TimeSpan.FromMinutes(30); // Intervalo de 30 minutos
+    else
+    {
+        // Arredonda o horário atual para a próxima meia hora se necessário
+        if (horarioAtual.Minute <= 30)
+        {
+            horarioAtual = horarioAtual.AddMinutes(30 - horarioAtual.Minute);
+        }
+        else if (horarioAtual.Minute > 30)
+        {
+            horarioAtual = horarioAtual.AddMinutes(60 - horarioAtual.Minute);
+        }
+    }
 }
 
-@while (horarioAtual <= horarioFim)
+@while (horarioAtual <= horarioFim && horarioAtual >= horarioInicio)
 {
     // Verifica se o horário está dentro do período de almoço
-    if (horarioInicio >= horarioAlmocoInicio && horarioInicio < horarioAlmocoFim)
+    if (horarioAtual.TimeOfDay >= horarioAlmocoInicio.TimeOfDay && horarioAtual.TimeOfDay < horarioAlmocoFim.TimeOfDay)
     {
         // Se estiver, pula o período de almoço
         horarioAtual = horarioAlmocoFim;
@@ -34,14 +44,14 @@
         // Se não estiver ocupado, adiciona a div
         if (!ocupado)
         {
-        <div class="hora-marcada" onclick="Corte.AdicionarHora(this, '@Model.Data.Date.ToString().Substring(0, 10)', '@horarioAtual.ToString().Substring(0, 5)')">
-            <p>@horarioAtual.ToString().Substring(0, 5)</p>
-            <div class="circle-green"></div>
-        </div>
+            <div class="hora-marcada" onclick="Corte.AdicionarHora(this, '@Model.Data.Date.ToString().Substring(0, 10)', '@horarioAtual.ToString("HH:mm")')">
+                <p>@horarioAtual.ToString("HH:mm")</p>
+                <div class="circle-green"></div>
+            </div>
         }
 
         // Incrementa o horário
-        horarioAtual = horarioAtual.Add(intervalo);
+        horarioAtual = horarioAtual.AddMinutes(30);
     }
 }
 
@@ -49,7 +59,7 @@
 {
     bool VerificarHorarioOcupado(DateTime inicio)
     {
-        if (Model.horariosOcupados.Any(x => x.DataCorte.TimeOfDay == inicio))
+        if (Model.horariosOcupados.Any(x => x.DataCorte.TimeOfDay == inicio.TimeOfDay))
             return true;
 
         return false;

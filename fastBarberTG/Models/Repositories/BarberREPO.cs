@@ -36,5 +36,14 @@ namespace fastBarberTG.Models.Repositories
                 return true;
             }
         }
+
+        public void AlterarSenha(string Senha)
+        {
+            using (contexto = new Contexto())
+            {
+               var senha = new SqlParameter("@Password", SqlDbType.VarChar) { Value = Senha};
+               contexto.ExecutaProcedure("FBSP_AlterarSenha", senha);
+            }
+        }
     }
 }

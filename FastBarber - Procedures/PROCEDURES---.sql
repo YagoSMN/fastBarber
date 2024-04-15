@@ -290,3 +290,36 @@ CREATE PROCEDURE [dbo].[FBSP_BuscaHorarioFunc]
 			FROM FB_HorarioFunc
 
 	END
+
+CREATE PROCEDURE [dbo].[FBSP_AlterarSenha]
+	@Password		NVARCHAR(12),
+	@Id				INT = 1
+	AS
+	/*
+	Documentação
+	Objetivo..........: Alterar senha do usuário v1
+	Autor.............: SMN - Yago S.
+	Data..............: 16/05/2020
+	Ex................: EXEC [dbo].[FBSP_AlterarSenha]
+	*/
+	BEGIN 
+		UPDATE FB_Barber
+			SET Senha = @Password
+			WHERE Id = @Id
+
+	END
+
+CREATE PROCEDURE [dbo].[FBSPJOB_CancelarCortes]
+	AS
+	/*
+	Documentação
+	Objetivo..........: cancelar horários que passaram 10 minutos e não foram iniciados.
+	Autor.............: SMN - Yago S.
+	Data..............: 16/05/2020
+	Ex................: EXEC [dbo].[FBSPJOB_CancelarCortes]
+	*/
+	BEGIN
+		UPDATE FB_HorariosMarc
+			SET StatusCorte = 3, DatCancelamento = GETDATE()
+		WHERE DataCorte <= DATEADD(MINUTE, -10, GETDATE()) AND StatusCorte = 2
+	END

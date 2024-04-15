@@ -11,6 +11,7 @@ namespace fastBarberTG.Controllers
     public class UserController : Controller
     {
         private DiaSemanaRepo diarepo = new DiaSemanaRepo();
+        private BarberREPO barberrepo = new BarberREPO();
         // GET: User
         [Authorize]
         public ActionResult Index() => View();
@@ -28,6 +29,18 @@ namespace fastBarberTG.Controllers
         public void SalvarDiaSemana(DiaSemana model)
         {
             diarepo.SalvarDiaSemana(model);
+        }
+
+        [Authorize]
+        public ActionResult AlterarSenha()
+        {
+            return View("AlterarSenha");
+        }
+
+        [Authorize]
+        public void SalvarSenha(string Senha)
+        {
+            barberrepo.AlterarSenha(Senha);
         }
     }
 }

@@ -18,7 +18,7 @@ CREATE TABLE FB_Barber(
 CREATE TABLE FB_HorariosMarc (
 	Id				INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
 	Id_Cliente		INT FOREIGN KEY REFERENCES FB_Cliente(Id) NOT NULL,
-	StatusCorte		INT NOT NULL,
+	StatusCorte		INT FOREIGN KEY REFERENCES FB_StatusCorte(Id) NOT NULL,
 	BarberId		INT FOREIGN KEY REFERENCES FB_Barber(Id) NOT NULL,
 	DataCorte		DATETIME NOT NULL,
 	TempoCorte		Time,
@@ -36,10 +36,20 @@ CREATE TABLE FB_HorarioFunc(
 	Ind_Ativo					char NOT NULL,
 )
 
+CREATE TABLE FB_StatusCorte(
+	Id			INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	NomeStatus	NVARCHAR(20) NOT NULL
+)
+
 INSERT INTO FB_Barber(Nome, Email, Senha) VALUES ('yago', 'yagohenriquest@gmail.com', '123456789123');
 
 INSERT INTO FB_Cliente (Cpf, Nome, SNome, DataNasc, Tel, Email)VALUES	('96375249082', 'Pedro', 'Maldoso', '2003-02-10', '(16) 99234-4123', 'pedro@maldosoprod.com'),
 									('96360112060', 'Kauan', 'Flash', '1999-10-05', '(16) 99223-2533', 'roger.guedes@smn.com.br')
+
+INSERT INTO FB_StatusCorte (NomeStatus) VALUES	('Corte Finalizado'),
+												('Corte Pendente'),
+												('Corte Cancelado'),
+												('Corte Iniciado')
 
 INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (1, 'Segunda-Feira', '08:00:00', '13:00:00','14:30:00','21:30:00', 'S')
 INSERT INTO FB_HorarioFunc(Id, Nome_Dia, Horario_Inicio, Horario_AlmocoInicio, Horario_AlmocoFim, Horario_Fim, Ind_Ativo) VALUES (2, 'Terça-Feira', '08:00:00', '13:00:00','14:30:00','21:30:00', 'S')

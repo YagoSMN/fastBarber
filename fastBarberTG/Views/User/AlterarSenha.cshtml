@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "AlterarSenha";
+    Layout = null;
+}
+
+<div id="user-menu" class="user-menu">
+    <form class="user-settings" style="height: 384px" onsubmit="User.salvarSenha()">
+        <div class="closeSelection">
+            <a href="/User">
+                <span class="material-symbols-outlined" style="color: white;">
+                    close
+                </span>
+            </a>
+        </div>
+        <h2>Alterar Senha</h2>
+        <input id="alt-senha" type="password" class="card" placeholder="Insira a senha" style="margin-top: 50px;"/>
+        <input type="submit" class="card logout" value="SALVAR SENHA"/>
+    </form>
+</div>

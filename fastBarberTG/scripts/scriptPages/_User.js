@@ -4,7 +4,9 @@
         urls: {
             showHorarios: '',
             buscarDiaSemana: '',
-            salvarDiaSemana: ''
+            salvarDiaSemana: '',
+            showAlterarSenha: '',
+            salvarSenha: ''
         },
     };
 
@@ -69,11 +71,50 @@
         });
     }
 
+    var showAlterarSenha = function() {
+        $.get(config.urls.showAlterarSenha).done(function (html) {
+            $("#user-requestdiv").show("slow").html(html);
+            $("#user-menu").hide("slow");
+        }).fail(function (msg) {
+            iziToast.error({
+                title: 'ERRO',
+                message: 'Erro na requisição',
+            });
+        });
+    };
+
+    var salvarSenha = function () {
+
+        if ($("#alt-senha").val().length > 12) {
+            iziToast.error({
+                title: 'ERRO',
+                message: 'senha pode conter somente 12 caracteres!',
+            });
+        };
+
+        event.preventDefault();
+        $.post(config.urls.salvarSenha, { Senha: $("#alt-senha").val() }).done(function () {
+            $("#user-requestdiv").empty().hide("slow");
+            $("#user-menu").show("slow");
+            iziToast.success({
+                title: 'Sucesso',
+                message: 'Senha Alterada!',
+            });
+        }).fail(function() {
+            iziToast.error({
+                title: 'ERRO',
+                message: 'Ao salvar senha!',
+            });
+        })
+    };
+
     return {
         init: init,
         showHorarios: showHorarios,
         addDay: addDay,
-        salvarDiaSemana: salvarDiaSemana
+        salvarDiaSemana: salvarDiaSemana,
+        showAlterarSenha: showAlterarSenha,
+        salvarSenha: salvarSenha
     };
 })();
 

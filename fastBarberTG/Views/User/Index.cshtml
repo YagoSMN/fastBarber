@@ -14,7 +14,7 @@
 		        </span>
 		    </a>
 		</div>
-		<a class="card" >Alterar Dados Pessoais</a>
+	    <a class="card" onclick="User.showAlterarSenha()">Alterar Senha</a>
 	    <a class="card" onclick="User.showHorarios()">Horario de Funcionamento</a>
 		<a class="card" href="/MarcarCorte">Marcar Cortes VIA LINK</a>
 	    <a href="/Home/Logout" class="card logout">SAIR DO APP</a>
@@ -28,7 +28,9 @@
         urls: {
             showHorarios: '@Url.Action("Horarios")',
             buscarDiaSemana: '@Url.Action("BuscarDiaSemana")',
-            salvarDiaSemana: '@Url.Action("SalvarDiaSemana")'
+            salvarDiaSemana: '@Url.Action("SalvarDiaSemana")',
+            showAlterarSenha: '@Url.Action("AlterarSenha")',
+            salvarSenha: '@Url.Action("SalvarSenha")'
         }
     })
 

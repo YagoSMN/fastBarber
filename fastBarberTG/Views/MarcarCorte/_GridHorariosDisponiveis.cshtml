@@ -7,7 +7,7 @@
     DateTime horarioAlmocoInicio = new DateTime(data.Year, data.Month, data.Day, Model.DayOfWeek.Horario_AlmocoInicio.Hours, Model.DayOfWeek.Horario_AlmocoInicio.Minutes, 0);
     DateTime horarioAlmocoFim = new DateTime(data.Year, data.Month, data.Day, Model.DayOfWeek.Horario_AlmocoFim.Hours, Model.DayOfWeek.Horario_AlmocoFim.Minutes, 0);
     DateTime horarioFim = new DateTime(data.Year, data.Month, data.Day, Model.DayOfWeek.Horario_Fim.Hours, Model.DayOfWeek.Horario_Fim.Minutes, 0);
-    DateTime horarioAtual = DateTime.Now;
+    DateTime horarioAtual = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, 0) ;
 
     // Se o dia for diferente do dia atual, ajusta o horário de início para o início do dia
     if (horarioInicio.Date != DateTime.Today)
@@ -38,11 +38,9 @@
     }
     else
     {
-        // Verifica se o horário está ocupado
-        bool ocupado = VerificarHorarioOcupado(horarioAtual);
 
         // Se não estiver ocupado, adiciona a div
-        if (!ocupado)
+        if (!VerificarHorarioOcupado(horarioAtual))
         {
             <div class="hora-marcada" onclick="Corte.AdicionarHora(this, '@Model.Data.Date.ToString().Substring(0, 10)', '@horarioAtual.ToString("HH:mm")')">
                 <p>@horarioAtual.ToString("HH:mm")</p>
@@ -59,7 +57,7 @@
 {
     bool VerificarHorarioOcupado(DateTime inicio)
     {
-        if (Model.horariosOcupados.Any(x => x.DataCorte.TimeOfDay == inicio.TimeOfDay))
+        if (Model.horariosOcupados.Any(x => x.DataCorte == inicio))
             return true;
 
         return false;

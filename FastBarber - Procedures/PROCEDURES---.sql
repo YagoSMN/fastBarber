@@ -1,15 +1,16 @@
 CREATE PROCEDURE [dbo].[FBSP_MostraHorariosMarc]
-	AS
+	@Data Date = NULL
+AS
 	/*
 	Documentação
-	Objetivo..........: Buscar os cortes marcados para o dia atual
+	Objetivo..........: Buscar os cortes marcados para o dia 
 	Autor.............: SMN - Yago S.
 	Data..............: 16/05/2020
-	Ex................: EXEC [dbo].[FBSP_MostraHorariosMarc]
+	Ex................: EXEC [dbo].[FBSP_MostraHorariosMarc] '15/06/2024'
 	*/
-	BEGIN 
-		DECLARE @DataAtual AS DATE
-		SET @DataAtual = GETDATE() -- Obtém a data atual
+	BEGIN
+		IF @Data IS NULL 
+			SET @Data = GETDATE()
 
 		SELECT	hm.Id,
 				hm.Id_Cliente,
@@ -24,7 +25,7 @@ CREATE PROCEDURE [dbo].[FBSP_MostraHorariosMarc]
 			FROM [dbo].[FB_HorariosMarc] hm
 				INNER JOIN [dbo].[FB_Cliente] c
 					ON c.Id = hm.Id_Cliente 
-			WHERE CAST(hm.DataCorte AS DATE) = @DataAtual -- Compara apenas o dia da data de corte
+			WHERE CAST(hm.DataCorte AS DATE) = @Data -- Compara apenas o dia da data de corte
 			ORDER BY hm.DataCorte ASC
 	END
 
@@ -323,3 +324,19 @@ CREATE PROCEDURE [dbo].[FBSPJOB_CancelarCortes]
 			SET StatusCorte = 3, DatCancelamento = GETDATE()
 		WHERE DataCorte <= DATEADD(MINUTE, -10, GETDATE()) AND StatusCorte = 2
 	END
+
+CREATE PROCEDURE [dbo].[FBSP_IniciarCorte]
+	@Id INT
+AS
+/*
+Documentação
+Objetivo..........: cancelar horários que passaram 10 minutos e não foram iniciados.
+Autor.............: SMN - Yago S.
+Data..............: 16/05/2020
+Ex................: EXEC [dbo].[FBSPJOB_CancelarCortes]
+*/
+BEGIN
+	UPDATE FB_HorariosMarc
+		SET StatusCorte = 4
+	WHERE Id = @Id
+END

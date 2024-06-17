@@ -7,7 +7,7 @@
 
 <div class="costumer-detail" data-statuscorte="@Model.horario.StatusCorte">
     <div class="details">
-        <div onclick="window.location.reload();" style="cursor: pointer;"><span class="material-symbols-outlined">close</span></div>
+        <div onclick="BarberControl.returnHome();" style="cursor: pointer;"><span class="material-symbols-outlined">close</span></div>
         <div class="costumer-description">
             <div class="uk-flex uk-flex-middle uk-gap-small">
                 <img src="~/Content/Logo/circlepng.png" />
@@ -20,7 +20,7 @@
         </div>
         <div class="sensitive-info">
             <p>Data nascimento - <span>@Model.costumer.DataNasc.ToShortDateString()</span></p>
-            <p>CPF - @Model.costumer.Cpf</p>
+            <p>CPF - @Model.costumer.CpfFormatado()</p>
         </div>
         @{
             <div id="corte-concluido" class="uk-flex uk-flex-center uk-flex-middle @(Model.horario.StatusCorte != 1 ? "uk-none" : "")" style="height: 80%;">
@@ -44,7 +44,7 @@
             <div class="elapsed-time">
                 <h3>Tempo decorrido</h3>
                 <img src="~/Content/Logo/circlepng.png" />
-                <h3 id="tempo-decorrido">@(!Model.horario.TempoCorte.Any() ? "00:00:00" : Model.horario.TempoCorte)</h3>
+                <h3 id="tempo-decorrido" data-horario="@Model.horario.HorarioId">@(!Model.horario.TempoCorte.Any() ? "00:00:00" : Model.horario.TempoCorte)</h3>
             </div>
         }
     </div>

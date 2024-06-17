@@ -15,7 +15,7 @@ namespace fastBarberTG.Controllers
         [Authorize]
         public ActionResult Index() //Lista todos os cortes de cabelo para o dia atual.
         {
-            return View(repo.HorariosMarcados());
+            return View(repo.HorariosMarcados(null));
         }
 
         [Authorize]
@@ -23,6 +23,12 @@ namespace fastBarberTG.Controllers
         public ActionResult CostumerDetails(int id)
         {
             return View("CostumerDetails", repo.BuscaCostumer(id));
+        }
+
+        [Authorize]
+        public ActionResult DiaCortes(DateTime data)
+        {
+            return View(repo.HorariosMarcados(data));
         }
 
         [Authorize]
@@ -35,6 +41,12 @@ namespace fastBarberTG.Controllers
         public void FinalizarCorte(int Id, string TempoCorte)
         {
             repo.finalizarCorte(Id, TempoCorte);
+        }
+
+        [Authorize]
+        public void IniciarCorte(int Id)
+        {
+            repo.iniciarCorte(Id);
         }
     }
 }

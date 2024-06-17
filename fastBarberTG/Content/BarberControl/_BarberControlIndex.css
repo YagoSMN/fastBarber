@@ -27,9 +27,13 @@
     font-weight: bold;
     background: var(--primary-color);
     border: none;
-    padding: 8px 50px;
+    padding: 8px;
     color: var(--font-color);
     border-radius: 4px;
+}
+
+.btn-filter:focus {
+    outline: none;
 }
 
 .btn-filter:hover {
@@ -68,6 +72,11 @@
 .red {
     background: red;
 }
+
+.cyan {
+    background: cyan;
+}
+
 .costumer {
     margin: 10px 0;
     display: flex;

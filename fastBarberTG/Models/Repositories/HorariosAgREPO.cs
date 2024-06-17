@@ -13,11 +13,12 @@ namespace fastBarberTG.Models
     {
         private Contexto contexto;
 
-        public IEnumerable<HorariosMarcadosModel> HorariosMarcados()
+        public IEnumerable<HorariosMarcadosModel> HorariosMarcados(DateTime? Date)
         {
             using (contexto = new Contexto())
             {
-                var reader = contexto.ExecutaProcedureComRetorno("FBSP_MostraHorariosMarc");
+                var Data = new SqlParameter("@Data", SqlDbType.Date) {Value = Date};
+                var reader = contexto.ExecutaProcedureComRetorno("FBSP_MostraHorariosMarc", Data);
                 var obj = new List<HorariosMarcadosModel>();
                 while (reader.Read())
                 {
@@ -155,6 +156,15 @@ namespace fastBarberTG.Models
                 var Id = new SqlParameter("@Id", SqlDbType.Int) { Value = id };
                 var tempoCorte = new SqlParameter("@TempoCorte", SqlDbType.NVarChar, 8) { Value = TempoCorte };
                 contexto.ExecutaProcedure("FBSP_finalizarHorario", Id, tempoCorte);
+            }
+        }
+
+        public void iniciarCorte(int id)
+        {
+            using (contexto = new Contexto())
+            {
+                var Id = new SqlParameter("@Id", SqlDbType.Int) {Value = id};
+                contexto.ExecutaProcedure("FBSP_IniciarCorte", Id);
             }
         }
 

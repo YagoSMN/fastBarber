@@ -47,6 +47,10 @@
     background: yellow;
 }
 
+.cyan {
+    background: cyan;
+}
+
 .sensitive-info {
     font-weight: bold;
     display: flex;

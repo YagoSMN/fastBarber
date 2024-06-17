@@ -5,7 +5,9 @@
             userSettings: '',
             buscarColaborador: '',
             desmarcarCorte: '',
-            finalizarCorte: ''
+            finalizarCorte: '',
+            buscarDiaSemana: '',
+            iniciarCorte: ''
         },
     };
 
@@ -13,21 +15,26 @@
         config = $config;
     };
 
-    function obterDiaDaSemana() {
-        var dataAtual = new Date();
+    function obterDiaDaSemana(dataStr) {
+
+        var data = parseDate(dataStr);
         var diasDaSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
-        var numeroDoDia = dataAtual.getDay();
+        var numeroDoDia = data.getDay();
         var nomeDoDia = diasDaSemana[numeroDoDia];
         $("#NomeDiaSemana").text(nomeDoDia);
+        var dia = data.getDate();
+        var mes = data.getMonth() + 1;
+        var year = data.getFullYear();
+        $("#DataDaSemana").text((dia < 10 ? '0' : '') + dia + '/' + (mes < 10 ? '0' : '') + mes + '/' + year);
+    }
 
-
-        var dia = dataAtual.getDate();
-        var mes = dataAtual.getMonth() + 1;
-        $("#DataDaSemana").text((dia < 10 ? '0' : '') + dia + '/' + (mes < 10 ? '0' : '') + mes);
+    function parseDate(str) {
+        var parts = str.split('/');
+        return new Date(parts[2], parts[1] - 1, parts[0]);
     }
 
     $(document).ready(function () {
-        obterDiaDaSemana();
+        obterDiaDaSemana(new Date().toLocaleDateString('pt-BR'));
     });
 
     var acessarColaborador = function (id) {
@@ -53,6 +60,9 @@
             $("#status-corte").removeClass("yellow").addClass("red");
             $("#buttons-control").hide();
             $("#corte-cancelado").removeClass("uk-none");
+            $(`[data-horarioId="${id}"] .circle-status`)
+                .removeClass("yellow")
+                .addClass("red");
         }).fail(function () {
             iziToast.error({
                 title: 'Error',
@@ -64,6 +74,11 @@
     function verificaContador(id) {
         var model = JSON.parse(localStorage.getItem("contador"));
 
+        if (model.Id != id)
+            return;
+
+        console.log(model.Id + '/' + id);
+
         if (model !== null && model.Id === id) {
             $("#buttons-control").hide();
             $("#timer-control").show();
@@ -72,7 +87,7 @@
             var diferenca = Math.floor((HoraAtual.getTime() - HoraInicio.getTime()) / 1000);
             contadorSetInterval = setInterval(function () {
                 diferenca++;
-                $("#tempo-decorrido").text(formatarTempo(diferenca));
+                $(`[data-horario="${id}"]`).text(formatarTempo(diferenca));
             },
             1000);
         }
@@ -88,15 +103,29 @@
             return;
         }
 
+        $.get(config.urls.iniciarCorte, { Id: id }).done(function() {
+
+        }).fail(function() {
+            iziToast.error({
+                title: 'Erro',
+                message: "Falha ao iniciar corte!",
+            });
+            return;
+        });
+
         localStorage.setItem('contador', JSON.stringify({ Id: id, HoraInicio: new Date() , Nome: nome, Horario: hora}));
         $("#buttons-control").hide("slow");
         $("#timer-control").show("slow");
         contador = 0;
         contadorSetInterval = setInterval(function() {
             contador++;
-            $("#tempo-decorrido").text(formatarTempo(contador));
+            $(`[data-horario="${id}"]`).text(formatarTempo(contador));
         },
         1000);
+
+        $(`[data-horarioId="${id}"] .circle-status`)
+            .removeClass("yellow")
+            .addClass("cyan");
     };
 
     var finalizarCorte = function(id) {
@@ -118,6 +147,9 @@
                 message: "Erro na requisição",
             });
         });
+        $(`[data-horarioId="${id}"] .circle-status`)
+            .removeClass("cyan")
+            .addClass("green");
 
     };
 
@@ -137,11 +169,35 @@
         return horasFormatadas + ":" + minutosFormatados + ":" + segundosFormatados;
     }
 
+    var buscarDiaSemana = function() {
+        $.get(config.urls.buscarDiaSemana, { data: $("#date").val() }).done(function(res) {
+            $("#cortes-dia").empty().html(res);
+            obterDiaDaSemana($("#date").val().split("-").reverse().join("/"));
+            iziToast.success({
+                color: 'blue',
+                title: 'Sucesso!',
+                message: `Dia ${$("#date").val().split("-").reverse().join("/")} selecionado!`,
+            });
+        }).fail(function() {
+            iziToast.error({
+                title: 'Error',
+                message: "Erro ao buscar dia",
+            });
+        });
+    }
+
+    var returnHome = function() {
+        $("#request-div").empty();
+        $("#main-page").show("slow");
+    }
+
     return {
         init: init,
         acessarColaborador: acessarColaborador,
         desmarcarCorte: desmarcarCorte,
         iniciarContador: iniciarContador,
-        finalizarCorte: finalizarCorte
+        finalizarCorte: finalizarCorte,
+        buscarDiaSemana: buscarDiaSemana,
+        returnHome: returnHome
     };
 })();

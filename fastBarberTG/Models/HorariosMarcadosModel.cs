@@ -49,6 +49,9 @@ namespace fastBarberTG.Models
             if (StatusCorte == 3)
                 return "red";
 
+            if (StatusCorte == 4)
+                return "cyan";
+
             return "";
         }
 

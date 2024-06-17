@@ -1,0 +1,27 @@
+﻿@model IEnumerable<fastBarberTG.Models.HorariosMarcadosModel>
+@using fastBarberTG.Models
+@{
+    Layout = null;
+}
+
+<div class="time-costumers">
+    <h2>Manhã</h2>
+    @foreach (var cliente in Model.Where(x => x.RetornaHoraDiaInt() < 12))
+    {
+        @Html.Partial("_clienteAgendado", cliente)
+    }
+</div>
+<div class="time-costumers">
+    <h2>Tarde</h2>
+    @foreach (var cliente in Model.Where(x => x.RetornaHoraDiaInt() >= 12 && x.RetornaHoraDiaInt() < 18))
+    {
+        @Html.Partial("_clienteAgendado", cliente)
+    }
+</div>
+<div class="time-costumers">
+    <h2>Noite</h2>
+    @foreach (var cliente in Model.Where(x => x.RetornaHoraDiaInt() >= 18 && x.RetornaHoraDiaInt() < 24))
+    {
+        @Html.Partial("_clienteAgendado", cliente)
+    }
+</div>

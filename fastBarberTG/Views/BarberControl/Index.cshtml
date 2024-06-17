@@ -13,28 +13,32 @@
             <div class="white-circle"></div>
             <h2 class="toPC" id="DataDaSemana"></h2> 
         </div>
-        <button class="btn-filter"><span class="material-symbols-outlined">filter_alt</span>Filtrar</button>
+        <div>
+            <input id="date" type="date" class="btn-filter" value="@DateTime.Now.ToString("yyyy-MM-dd")" onchange="BarberControl.buscarDiaSemana()"/>
+        </div>
     </div>
-    <div class="time-costumers">
-        <h2>Manhã</h2>
-        @foreach (var cliente in Model.Where(x => x.RetornaHoraDiaInt() < 12))
-        {
-            @Html.Partial("_clienteAgendado", cliente)
-        }
-    </div>
-    <div class="time-costumers">
-        <h2>Tarde</h2>
-        @foreach (var cliente in Model.Where(x => x.RetornaHoraDiaInt() >= 12 && x.RetornaHoraDiaInt() < 18))
-        {
-            @Html.Partial("_clienteAgendado", cliente)
-        }
-    </div>
-    <div class="time-costumers">
-        <h2>Noite</h2>
-        @foreach (var cliente in Model.Where(x => x.RetornaHoraDiaInt() >= 18 && x.RetornaHoraDiaInt() < 24))
-        {
-            @Html.Partial("_clienteAgendado", cliente)
-        }
+    <div id="cortes-dia" style="width: 100%">
+        <div class="time-costumers">
+            <h2>Manhã</h2>
+            @foreach (var cliente in Model.Where(x => x.RetornaHoraDiaInt() < 12))
+            {
+                @Html.Partial("_clienteAgendado", cliente)
+            }
+        </div>
+        <div class="time-costumers">
+            <h2>Tarde</h2>
+            @foreach (var cliente in Model.Where(x => x.RetornaHoraDiaInt() >= 12 && x.RetornaHoraDiaInt() < 18))
+            {
+                @Html.Partial("_clienteAgendado", cliente)
+            }
+        </div>
+        <div class="time-costumers">
+            <h2>Noite</h2>
+            @foreach (var cliente in Model.Where(x => x.RetornaHoraDiaInt() >= 18 && x.RetornaHoraDiaInt() < 24))
+            {
+                @Html.Partial("_clienteAgendado", cliente)
+            }
+        </div>
     </div>
 </div>
 <div id="request-div" style="display: none"></div>
@@ -44,7 +48,9 @@
         urls: {
             buscarColaborador: '@Url.Action("CostumerDetails")',
             desmarcarCorte: '@Url.Action("DesmarcarCorte")',
-            finalizarCorte: '@Url.Action("FinalizarCorte")'
+            finalizarCorte: '@Url.Action("FinalizarCorte")',
+            buscarDiaSemana: '@Url.Action("DiaCortes")',
+            iniciarCorte: '@Url.Action("IniciarCorte")'
         }
     })
 </script>

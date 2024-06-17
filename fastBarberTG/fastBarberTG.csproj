@@ -198,6 +198,7 @@
     <Content Include="Views\MarcarCorte\_GridCalendario.cshtml" />
     <Content Include="Views\MarcarCorte\_GridHorariosDisponiveis.cshtml" />
     <Content Include="Views\User\AlterarSenha.cshtml" />
+    <Content Include="Views\BarberControl\DiaCortes.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
